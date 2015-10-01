@@ -1,0 +1,25 @@
+<?binding.jca SelectSubmittedAccounts_db.jca?>
+<wsdl:definitions name="SelectSubmittedAccounts" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.ConfirmAccounts/SelectSubmittedAccounts" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/SelectSubmittedAccounts" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.ConfirmAccounts/SelectSubmittedAccounts" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="SelectSubmittedAccounts_plt">
+        <plt:role name="SelectSubmittedAccounts_role">
+            <plt:portType name="tns:SelectSubmittedAccounts_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SelectSubmittedAccounts" schemaLocation="xsd/SelectSubmittedAccounts.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="SelectSubmittedAccountsInput_msg">
+        <wsdl:part name="SelectSubmittedAccountsInput_msg" element="db:SelectSubmittedAccountsInput"/>
+    </wsdl:message>
+    <wsdl:message name="SelectSubmittedAccountsOutputCollection_msg">
+        <wsdl:part name="SelectSubmittedAccountsOutputCollection" element="db:SelectSubmittedAccountsOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="SelectSubmittedAccounts_ptt">
+        <wsdl:operation name="SelectSubmittedAccounts">
+            <wsdl:input message="tns:SelectSubmittedAccountsInput_msg"/>
+            <wsdl:output message="tns:SelectSubmittedAccountsOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<wasec:uploadAccount xmlns:wasec="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts">
+   <wasec:header>
+      <ns1:rquid xmlns:ns1="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader">12</ns1:rquid>
+   </wasec:header>
+   <wasec:body>
+      <wasec:clientDate>2015-05-18T19:29:37.624</wasec:clientDate>
+      <wasec:accountInfo>
+         <wasec:billingAccount>ACCOUNT_NUMER2</wasec:billingAccount>
+      </wasec:accountInfo>
+      <wasec:accountInfo>
+         <wasec:billingAccount>ACCOUNT_NUMER15</wasec:billingAccount>
+         <wasec:accountStatusCode>AcctNew</wasec:accountStatusCode>
+      </wasec:accountInfo>
+      <wasec:accountInfo>
+         <wasec:billingAccount>ACCOUNT_NUMER28</wasec:billingAccount>
+      </wasec:accountInfo>
+   </wasec:body>
+</wasec:uploadAccount>

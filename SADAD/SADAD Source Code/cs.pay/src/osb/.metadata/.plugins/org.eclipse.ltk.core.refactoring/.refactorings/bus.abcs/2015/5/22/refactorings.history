@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 1 resources to &apos;bus.abcs&apos;" description="Move 1 resources to &apos;bus.abcs&apos;" destination="/bus.abcs" element1="SADAD/bus.abcs.confirmBills_1.0.biz" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1432486349873" updateReferences="true"/>
+</session>

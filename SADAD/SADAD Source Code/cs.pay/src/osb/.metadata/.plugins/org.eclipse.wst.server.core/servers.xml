@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server auto-publish-setting="1" hostname="damevlsoaa2d.almajdouie.com" id="Oracle WebLogic Server 11gR1 (10.3.6) at [damevlsoaa2d.almajdouie.com]" name="Oracle WebLogic Server 11gR1 (10.3.6) at [damevlsoaa2d.almajdouie.com]" runtime-id="Oracle WebLogic Server 11gR1 (10.3.6)" server-type="com.bea.weblogic1036.server" server-type-id="com.bea.weblogic1036.server" start-timeout="480" stop-timeout="240" timestamp="1" weblogic_domain_path="" weblogic_host_name="damevlsoaa2d.almajdouie.com" weblogic_is_remote="true" weblogic_port="7001" weblogic_use_bootprop="false" weblogic_use_config_xml="false">
+    <list key="modules" value0="OSBConfig::com.bea.alsb.core.internal.deployables:OSBConfig::bea.alsb.container.module::1.0.100"/>
+  </server>
+</servers>

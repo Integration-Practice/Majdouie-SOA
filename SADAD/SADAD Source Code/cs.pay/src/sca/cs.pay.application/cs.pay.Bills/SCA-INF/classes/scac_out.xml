@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>104</line>
+      <col/>
+      <file>cs_pay_bpel_uploadBill.bpel</file>
+      <name>cs_pay_bpel_uploadBill.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns14:error" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>108</line>
+      <col/>
+      <file>cs_pay_bpel_uploadBill.bpel</file>
+      <name>cs_pay_bpel_uploadBill.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns14:error" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>337</line>
+      <col/>
+      <file>cs_pay_bpel_uploadBill.bpel</file>
+      <name>cs_pay_bpel_uploadBill.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns6:getBillInfoOutput" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>341</line>
+      <col/>
+      <file>cs_pay_bpel_uploadBill.bpel</file>
+      <name>cs_pay_bpel_uploadBill.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns6:getBillInfoOutput" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+</Faults>

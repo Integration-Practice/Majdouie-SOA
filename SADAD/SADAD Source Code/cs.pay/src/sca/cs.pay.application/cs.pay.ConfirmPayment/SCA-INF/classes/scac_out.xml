@@ -1,0 +1,143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>cs.pay.mediator.Payment.mplan</file>
+      <name>cs.pay.mediator.Payment.mplan</name>
+      <fix/>
+      <msg>Operation\Event "loadPayment" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>cs.pay.mediator.Payment.mplan</file>
+      <name>cs.pay.mediator.Payment.mplan</name>
+      <fix/>
+      <msg>Operation\Event "uploadPayment" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>cs.pay.mediator.Payment.mplan</file>
+      <name>cs.pay.mediator.Payment.mplan</name>
+      <fix/>
+      <msg>Operation\Event "confirmPayment" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>109</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns1:paymentRecord" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>126</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns1:paymentRecord" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>130</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns9:getBillInfoByAccNbrOutput" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>134</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns9:getBillInfoByAccNbrOutput" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>138</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns1:paymentRecord" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>146</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns1:paymentRecord" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>154</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns1:paymentRecord" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>158</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns1:paymentRecord" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>174</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns1:paymentRecord" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>174</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns1:paymentTransactionID" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>178</line>
+      <col/>
+      <file>cs_pay_bpel_Payment.bpel</file>
+      <name>cs_pay_bpel_Payment.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns1:paymentRecord" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+</Faults>

@@ -1,0 +1,25 @@
+<?binding.jca getBillInfoByAccNbr_db.jca?>
+<wsdl:definitions name="getBillInfoByAccNbr" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.ConfirmPayment/getBillInfoByAccNbr" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/getBillInfoByAccNbr" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.ConfirmPayment/getBillInfoByAccNbr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="getBillInfoByAccNbr_plt">
+        <plt:role name="getBillInfoByAccNbr_role">
+            <plt:portType name="tns:getBillInfoByAccNbr_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/getBillInfoByAccNbr" schemaLocation="xsd/getBillInfoByAccNbr.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="getBillInfoByAccNbrInput_msg">
+        <wsdl:part name="getBillInfoByAccNbrInput_msg" element="db:getBillInfoByAccNbrInput"/>
+    </wsdl:message>
+    <wsdl:message name="getBillInfoByAccNbrOutputCollection_msg">
+        <wsdl:part name="getBillInfoByAccNbrOutputCollection" element="db:getBillInfoByAccNbrOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="getBillInfoByAccNbr_ptt">
+        <wsdl:operation name="getBillInfoByAccNbr">
+            <wsdl:input message="tns:getBillInfoByAccNbrInput_msg"/>
+            <wsdl:output message="tns:getBillInfoByAccNbrOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

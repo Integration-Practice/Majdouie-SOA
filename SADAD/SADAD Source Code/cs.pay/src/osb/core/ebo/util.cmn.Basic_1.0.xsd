@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+            xmlns:hdr="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+            targetNamespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+            elementFormDefault="qualified">
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+              schemaLocation="../ebo/util.cmn.EBMHeader_1.0.xsd"/>
+  <xsd:simpleType name="BillStatusCode">
+    <xsd:restriction base="String32Type">
+      <xsd:enumeration value="BillNew"/>
+      <xsd:enumeration value="BillUpdated"/>
+      <xsd:enumeration value="BillExpired"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="OfficialIdType">
+    <xsd:restriction base="String32Type">
+      <xsd:enumeration value="NAT"/>
+      <xsd:enumeration value="IQA"/>
+      <xsd:enumeration value="BIS"/>
+      <xsd:enumeration value="ACT"/>
+      <xsd:enumeration value="SID"/>
+      <xsd:enumeration value="BTL"/>
+      <xsd:enumeration value="BED"/>
+      <xsd:enumeration value="BIE"/>
+      <xsd:enumeration value="SED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <xsd:simpleType name="String32Type">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <xsd:simpleType name="UidType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <xsd:simpleType name="CurrencyType">
+    <xsd:annotation>
+      <xsd:documentation>currency amount</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="BillType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Recurring"/>
+      <xsd:enumeration value="Hightoll"/>
+      <xsd:enumeration value="Oneoff"/>
+      <xsd:enumeration value="Prepaid"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="PropertyType">
+    <xsd:sequence>
+      <xsd:element name="value" type="xsd:string" minOccurs="0"
+                   maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="PropertySetType">
+    <xsd:sequence>
+      <xsd:element name="property" type="PropertyType" minOccurs="0"
+                   maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseType">
+    <xsd:sequence>
+      <xsd:element name="header" type="hdr:HeaderType"/>
+      <xsd:element name="body">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="clientDate" type="xsd:dateTime"/>
+            <xsd:element name="messageCode" type="xsd:string"/>
+            <xsd:element name="statusCode" type="xsd:string"/>
+            <xsd:element name="respUid" type="xsd:string"/>
+            <xsd:element name="timestamp" type="xsd:dateTime" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConfirmationType">
+    <xsd:sequence>
+      <xsd:element name="localSender" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="clientDate" type="xsd:dateTime"/>
+      <xsd:element name="messageCode" type="xsd:string"/>
+      <xsd:element name="statusCode" type="xsd:long"/>
+      <xsd:element name="rqUID" type="xsd:string"/>
+      <xsd:element name="asyncRqUID" type="xsd:string"/>
+      <xsd:element name="uploadDate" type="xsd:string"/>
+      <xsd:element name="processingDate" type="xsd:string"/>
+      <xsd:element name="successRecordCount" type="xsd:long"/>
+      <xsd:element name="errorRecordCount" type="xsd:long"/>
+      <xsd:element name="pendingRecordCount" type="xsd:long" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConfirmationResponseType">
+    <xsd:sequence>
+      <xsd:element name="header" type="hdr:HeaderType"/>
+      <xsd:element name="body" type="ConfirmationType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MessageInformationType">
+    <xsd:sequence>
+      <xsd:element name="clientDate" type="xsd:dateTime"/>
+      <xsd:element name="localSender" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="messageCode" type="xsd:string"/>
+      <xsd:element name="requestUID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="statusCode" minOccurs="0" type="xsd:long"/>
+      <xsd:element name="severity" minOccurs="0" type="xsd:string"/>
+      <xsd:element name="billCategory" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="serviceType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="timestamp" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InformationErrorType">
+    <xsd:sequence>
+      <xsd:element name="infoError" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="error">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="errorCode" type="xsd:string"/>
+                  <xsd:element name="errorMessage" type="xsd:string"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="information">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="billingAccount" type="xsd:string"/>
+                  <xsd:element name="officialId" type="xsd:string"
+                               minOccurs="0"/>
+                  <xsd:element name="officialIdType" type="OfficialIdType"
+                               minOccurs="0"/>
+                  <xsd:element name="billerId" type="xsd:string"/>
+                  <xsd:element name="serviceType" type="xsd:string"/>
+                  <xsd:element name="accountStatusCode" type="xsd:string"
+                               minOccurs="0"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

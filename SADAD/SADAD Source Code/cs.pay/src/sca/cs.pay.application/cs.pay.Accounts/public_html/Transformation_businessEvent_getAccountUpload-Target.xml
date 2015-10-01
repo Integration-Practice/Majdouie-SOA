@@ -1,0 +1,5 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<top:getAccountUploadSelect_reqid_statusCodeInputParameters xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/getAccountUpload">
+   <top:reqid>string76</top:reqid>
+   <top:statusCode>string80</top:statusCode>
+</top:getAccountUploadSelect_reqid_statusCodeInputParameters>

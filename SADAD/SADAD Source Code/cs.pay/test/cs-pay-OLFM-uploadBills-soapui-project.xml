@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="ba501c97-cf59-4d00-8a0f-4e5752fc43b6" activeEnvironment="Default" name="cs.pay.OLFM.uploadBills" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="cfb148a1-bdb0-4723-8d2c-a3bec15a86e9" wsaVersion="NONE" name="DEQUEUE_pttBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/pcbpel/adapter/apps/cs.pay.application/cs.pay.Bills/cs_pay_cvs_uploadBill}DEQUEUE_pttBinding" soapVersion="1_1" anonymous="optional" definition="http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills/uploadBills?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills/uploadBills?WSDL"><con:part><con:url>http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills/uploadBills?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="cs.pay.cvs.uploadBill" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/apps/cs.pay.application/cs.pay.Bills/cs_pay_cvs_uploadBill" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/apps/cs.pay.application/cs.pay.Bills/cs_pay_cvs_uploadBill" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:imp1="http://xmlns.oracle.com/xdb/APPS/cs.pay.cvs.uploadBill" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+  <wsdl:documentation>
+    <abstractWSDL>http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills!1.0/cs_pay_cvs_uploadBill.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plt:partnerLinkType name="DEQUEUE_plt">
+    <plt:role name="DEQUEUE_role">
+      <plt:portType name="tns:DEQUEUE_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/xdb/APPS/cs.pay.cvs.uploadBill" schemaLocation="http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills/uploadBills?XSD=xsd/APPS_WF_EVENT_T_cs.pay.cvs.uploadBill.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="WF_EVENT_T_msg">
+    <wsdl:part name="WF_EVENT_T" element="imp1:WF_EVENT_T"/>
+  </wsdl:message>
+  <wsdl:portType name="DEQUEUE_ptt">
+    <wsdl:operation name="DEQUEUE">
+      <wsdl:input message="tns:WF_EVENT_T_msg"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DEQUEUE_pttBinding" type="tns:DEQUEUE_ptt">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="DEQUEUE">
+      <soap:operation style="document" soapAction="DEQUEUE"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="uploadBills">
+    <wsdl:port name="DEQUEUE_pt" binding="tns:DEQUEUE_pttBinding">
+      <soap:address location="http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills/uploadBills"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills/uploadBills?XSD=xsd/APPS_WF_EVENT_T_cs.pay.cvs.uploadBill.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://xmlns.oracle.com/xdb/APPS/cs.pay.cvs.uploadBill" elementFormDefault="unqualified" attributeFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:APPS="http://xmlns.oracle.com/xdb/APPS/cs.pay.cvs.uploadBill">
+  <complexType name="WF_EVENT_T">
+    <sequence>
+      <element name="PRIORITY" type="double" nillable="true" minOccurs="0"/>
+      <element name="SEND_DATE" type="string" nillable="true" minOccurs="0"/>
+      <element name="RECEIVE_DATE" type="string" nillable="true" minOccurs="0"/>
+      <element name="CORRELATION_ID" nillable="true" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="240"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="PARAMETER_LIST" type="APPS:WF_PARAMETER_LIST_T" nillable="true" minOccurs="0"/>
+      <element name="EVENT_NAME" nillable="true" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="240"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="EVENT_KEY" nillable="true" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="240"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="EVENT_DATA" nillable="true" minOccurs="0"/>
+      <element name="FROM_AGENT" type="APPS:WF_AGENT_T" nillable="true" minOccurs="0"/>
+      <element name="TO_AGENT" type="APPS:WF_AGENT_T" nillable="true" minOccurs="0"/>
+      <element name="ERROR_SUBSCRIPTION" type="base64Binary" nillable="true" minOccurs="0"/>
+      <element name="ERROR_MESSAGE" nillable="true" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="4000"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="ERROR_STACK" nillable="true" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="4000"/>
+          </restriction>
+        </simpleType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="WF_AGENT_T">
+    <sequence>
+      <element name="NAME" nillable="true" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="30"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="SYSTEM" nillable="true" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="30"/>
+          </restriction>
+        </simpleType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="WF_PARAMETER_T">
+    <sequence>
+      <element name="NAME" nillable="true" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="30"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="VALUE" nillable="true" minOccurs="0">
+        <simpleType>
+          <restriction base="string">
+            <maxLength value="2000"/>
+          </restriction>
+        </simpleType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="WF_PARAMETER_LIST_T">
+    <sequence>
+      <element name="PARAMETER_LIST_ITEM" type="APPS:WF_PARAMETER_T" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+    </sequence>
+  </complexType>
+  <element name="WF_EVENT_T" type="APPS:WF_EVENT_T"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills/uploadBills</con:endpoint></con:endpoints><con:operation id="97c82708-e5a1-431b-b9ac-ab3b3d29f9c7" isOneWay="false" action="DEQUEUE" name="DEQUEUE" bindingOperationName="DEQUEUE" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="087f4fec-d5d9-40ce-8803-745a2c8eb6d9" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills/uploadBills</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cs="http://xmlns.oracle.com/xdb/APPS/cs.pay.cvs.uploadBill">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <cs:WF_EVENT_T>\r
+         <!--Optional:-->\r
+         <PRIORITY>50</PRIORITY>\r
+         <!--Optional:-->\r
+         <SEND_DATE>2015-05-17T11:59:21</SEND_DATE>\r
+         <PARAMETER_LIST>\r
+            <!--Zero or more repetitions:-->\r
+            <PARAMETER_LIST_ITEM>\r
+               <!--Optional:-->\r
+               <NAME>REQ_ID</NAME>\r
+               <!--Optional:-->\r
+               <VALUE>DF8711DB-5E9D-4B6A-B744-8D0C78B5778B</VALUE>\r
+            </PARAMETER_LIST_ITEM>\r
+            <PARAMETER_LIST_ITEM>\r
+               <!--Optional:-->\r
+               <NAME>STATUS_CODE</NAME>\r
+               <!--Optional:-->\r
+               <VALUE>SUBMITTED</VALUE>\r
+            </PARAMETER_LIST_ITEM>\r
+         </PARAMETER_LIST>\r
+         <!--Optional:-->\r
+         <EVENT_NAME>xxamg.okl.sadad.BillSubmit</EVENT_NAME>\r
+         <!--Optional:-->\r
+         <EVENT_KEY>583</EVENT_KEY>\r
+         <!--Optional:-->\r
+         <FROM_AGENT>\r
+            <!--Optional:-->\r
+            <NAME>WF_BPEL_QAGENT</NAME>\r
+            <!--Optional:-->\r
+            <SYSTEM>DEVAMG.ALMAJDOUIE.COM</SYSTEM>\r
+         </FROM_AGENT>\r
+         <ERROR_SUBSCRIPTION>cid:820524644649</ERROR_SUBSCRIPTION>\r
+      </cs:WF_EVENT_T>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="DEQUEUE"/><con:wsrmConfig version="1.2"/></con:call><con:call id="1a613c75-780e-4310-ba69-6378718488c0" name="loadBillRequest"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://damevlsoaa2d.almajdouie.com:8001/soa-infra/services/Sadad/cs.pay.Bills/uploadBills</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cs="http://xmlns.oracle.com/xdb/APPS/cs.pay.cvs.uploadBill">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <cs:WF_EVENT_T>\r
+         <!--Optional:-->\r
+         <PRIORITY>50</PRIORITY>\r
+         <!--Optional:-->\r
+         <SEND_DATE>2015-05-17T11:59:21</SEND_DATE>\r
+         <PARAMETER_LIST>\r
+            <!--Zero or more repetitions:-->\r
+            <PARAMETER_LIST_ITEM>\r
+               <!--Optional:-->\r
+               <NAME>REQ_ID</NAME>\r
+               <!--Optional:-->\r
+               <VALUE>DF8711DB-5E9D-4B6A-B744-8D0C78B57777</VALUE>\r
+            </PARAMETER_LIST_ITEM>\r
+            <PARAMETER_LIST_ITEM>\r
+               <!--Optional:-->\r
+               <NAME>STATUS_CODE</NAME>\r
+               <!--Optional:-->\r
+               <VALUE>SUBMITTED</VALUE>\r
+            </PARAMETER_LIST_ITEM>\r
+         </PARAMETER_LIST>\r
+         <!--Optional:-->\r
+         <EVENT_NAME>xxamg.okl.sadad.BillSubmit</EVENT_NAME>\r
+         <!--Optional:-->\r
+         <EVENT_KEY>583</EVENT_KEY>\r
+         <!--Optional:-->\r
+         <FROM_AGENT>\r
+            <!--Optional:-->\r
+            <NAME>WF_BPEL_QAGENT</NAME>\r
+            <!--Optional:-->\r
+            <SYSTEM>DEVAMG.ALMAJDOUIE.COM</SYSTEM>\r
+         </FROM_AGENT>\r
+         <ERROR_SUBSCRIPTION>cid:820524644649</ERROR_SUBSCRIPTION>\r
+      </cs:WF_EVENT_T>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="DEQUEUE"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

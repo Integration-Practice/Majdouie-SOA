@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.AlMajdouie.sa/ebo/util.flt.Fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:bsc="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" 
+xmlns:tns="http://www.AlMajdouie.sa/ebo/util.flt.Fault" 
+xmlns:hdr="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" 
+targetNamespace="http://www.AlMajdouie.sa/ebo/util.flt.Fault" elementFormDefault="qualified" version="1.0">
+
+	<xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" schemaLocation="util.cmn.Basic_1.0.xsd"/>
+	<xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" schemaLocation="util.cmn.EBMHeader_1.0.xsd"/>
+	<xsd:complexType name="CauseListType">
+		<xsd:sequence>
+			<xsd:element name="cause" type="tns:FaultType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="causeList" type="tns:CauseListType"/>
+	<xsd:complexType name="ErrorType">
+		<xsd:sequence>
+			<xsd:element name="errorCode" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="error" type="ErrorType"/>
+	<xsd:complexType name="ErrorListType">
+		<xsd:annotation>
+			<xsd:documentation>Enables the support of throwing a fault based on many errors received at once from a source.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="error" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="errorList" type="ErrorListType"/>
+	<xsd:complexType name="FaultType">
+		<xsd:sequence>
+			<xsd:element name="source" type="xsd:string"/>
+			<xsd:element ref="errorList"/>
+			<xsd:element name="details" type="xsd:anyType"/>
+			<xsd:element ref="hdr:ebmCID"/>
+			<xsd:element ref="hdr:ebmMID"/>
+			<xsd:element name="faultInstanceId" type="bsc:UidType"/>
+			<xsd:element name="propertySet" type="bsc:PropertySetType"/>
+			<xsd:element name="timestamp" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element ref="causeList" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>This lists the faults which 'caused' this fault to be generated.
+        This is a list and therefore ordering of the nodes is important.
+        The first fault in the list is the fault which caused this fault (the fault containing this list).
+        The second fault in the list if the fault which caused the first fault in the list and so on and so on.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="fault" type="FaultType"/>
+</xsd:schema>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:schemaEntry xmlns:con="http://www.bea.com/wli/sb/resources/config">
+    <con:schema><![CDATA[<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.almajdouie.sa/ebs/ent.msg.Notification"
+            targetNamespace="http://www.almajdouie.sa/ebs/ent.msg.Notification"
+            elementFormDefault="qualified">
+  <xsd:complexType name="SendSMSType">
+    <xsd:sequence>
+      <xsd:element name="userName" type="C50_Type" minOccurs="0"/>
+      <xsd:element name="password" type="C50_Type" minOccurs="0"/>
+      <xsd:element name="recipient" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="mobileNumber" type="C16_Type"/>
+            <xsd:element name="name" type="C100_Type"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="senderID" type="C16_Type" minOccurs="0"/>
+      <xsd:element name="smsText" type="C760_Type" minOccurs="0"/>
+      <xsd:element name="smsType" type="C100_Type" minOccurs="0"/>
+      <xsd:element name="appType" type="C50_Type" minOccurs="0"/>
+      <xsd:element name="taskName" type="C50_Type" minOccurs="0"/>
+      <xsd:element name="timeOffset" type="xsd:long"/>
+      <xsd:element name="Priority" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="sendSMS" type="SendSMSType"/>
+  <xsd:complexType name="SendSMSResponseType">
+    <xsd:sequence>
+      <xsd:element name="sendSMSResult" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="sendSMSResponse" type="SendSMSResponseType"/>
+  <xsd:simpleType name="C50_Type">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="50"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="C16_Type">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="16"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="C100_Type">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="100"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="C760_Type">
+      <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="760"/>
+       </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:schema>
+    <con:targetNamespace>http://www.almajdouie.sa/ebs/ent.msg.Notification</con:targetNamespace>
+</con:schemaEntry>

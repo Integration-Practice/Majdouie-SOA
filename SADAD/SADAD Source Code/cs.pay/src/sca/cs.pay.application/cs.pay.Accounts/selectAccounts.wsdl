@@ -1,0 +1,25 @@
+<?binding.jca selectAccounts_db.jca?>
+<wsdl:definitions name="selectAccounts" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.Accounts/selectAccounts" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/selectAccounts" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.Accounts/selectAccounts" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="selectAccounts_plt">
+        <plt:role name="selectAccounts_role">
+            <plt:portType name="tns:selectAccounts_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/selectAccounts" schemaLocation="xsd/selectAccounts.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="selectAccountsInput_msg">
+        <wsdl:part name="selectAccountsInput_msg" element="db:selectAccountsInput"/>
+    </wsdl:message>
+    <wsdl:message name="selectAccountsOutputCollection_msg">
+        <wsdl:part name="selectAccountsOutputCollection" element="db:selectAccountsOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="selectAccounts_ptt">
+        <wsdl:operation name="selectAccounts">
+            <wsdl:input message="tns:selectAccountsInput_msg"/>
+            <wsdl:output message="tns:selectAccountsOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

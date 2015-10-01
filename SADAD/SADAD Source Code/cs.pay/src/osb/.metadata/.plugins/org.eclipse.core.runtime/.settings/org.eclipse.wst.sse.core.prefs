@@ -1,0 +1,4 @@
+#Mon May 18 13:32:10 AST 2015
+task-tag-projects-already-scanned=OSBConfig,bus.abcs,core,cs.pay,chn.ext,cs.pay.mock.services
+eclipse.preferences.version=1
+modelmanager.maxWaitDuringConcurrentLoad=30000

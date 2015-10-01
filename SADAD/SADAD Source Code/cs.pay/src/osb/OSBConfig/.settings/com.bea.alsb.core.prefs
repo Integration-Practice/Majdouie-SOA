@@ -1,0 +1,10 @@
+#Sun May 31 11:45:13 AST 2015
+ACTIVATION_DESCRIPTION_PROPERTY=Publish from Oracle Service Bus IDE.
+CUSTOMIZATION_FILE_PROPERTY=
+DISCARD_SESSION_PROPERTY=true
+KEYSTORE_PROPERTYfile=
+KEYSTORE_PROPERTYpassword=
+PUBLISH_SESSION_NAME_PROPERTY=OSB_Publish
+SERVER_PROPERTY=Oracle WebLogic Server 11gR1 (10.3.6) at [damevlsoaa2d.almajdouie.com]
+container.referenced.projects=chn.ext|cs.pay|cs.pay.mock.services|bus.abcs|core|
+eclipse.preferences.version=1

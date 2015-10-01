@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAConfigPlan xmlns:jca="http://platform.integration.oracle/blocks/adapter/fw/metadata"
+               xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+               xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
+               xmlns:edl="http://schemas.oracle.com/events/edl"
+               xmlns="http://schemas.oracle.com/soa/configplan">
+    <composite name="*">
+        <import>
+            <searchReplace>
+                 <search>http://damevlsoaa2d.almajdouie.com:8001</search>
+                 <replace>http://damevlsoaa1d.almajdouie.com:8021</replace>
+            </searchReplace>
+        </import>
+        <reference name="*">
+            <binding type="ws">
+                <property name="endpointURI">
+                    <searchReplace>
+                         <search>http://damevlsoaa2d.almajdouie.com:8001</search>
+                        <replace>http://damevlsoaa1d.almajdouie.com:8021</replace>
+                    </searchReplace>
+                </property>
+            </binding>
+        </reference>
+        <reference name="*">
+            <binding type="ws">
+                <attribute name="location">
+                    <!--search and replace rules for Fault Handler-->
+                    <searchReplace>
+                        <search>http://damevlsoaa2d.almajdouie.com:8001</search>
+                        <replace>http://damevlsoaa1d.almajdouie.com:8021</replace>
+                    </searchReplace>
+                </attribute>
+            </binding>
+        </reference>
+    </composite>
+    <wsdlAndSchema name="*">
+        <!--search and replace rules for DB Adapter-->
+        <searchReplace>
+            <search>eis/DB/testRayaDatabase</search>
+            <replace>eis/DB/EBSRealestate</replace>
+        </searchReplace>
+        <!--search and replace rules for Apps Adapter-->
+        <searchReplace>
+            <search>eis/APPS/testRayaApps</search>
+            <replace>eis/APPS/EBSRealestate</replace>
+        </searchReplace>
+        <!--search and replace rules for Siebel Outbound Notification URL-->
+        <searchReplace>
+            <search>http://DAMEVWSIEA3D</search>
+            <replace>http://damevlsiea2u:7777</replace>
+        </searchReplace>
+        <searchReplace>
+	    <search>http://damevwsiea3d</search>
+	    <replace>http://damevlsiea2u:7777</replace>
+        </searchReplace>
+        <!--search and replace rules for 3rd Party Insurance URL-->
+        <searchReplace>
+            <search>http://77.240.88.22</search>
+            <replace>http://77.240.88.22</replace>
+        </searchReplace>		
+    </wsdlAndSchema>
+</SOAConfigPlan>

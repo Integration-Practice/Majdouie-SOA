@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.AlMajdouie.sa/ebs/cs.pay.Bills"
+            xmlns:hdr="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+            xmlns:basic="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+            targetNamespace="http://www.AlMajdouie.sa/ebs/cs.pay.Bills"
+            elementFormDefault="qualified">
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+              schemaLocation="../ebo/util.cmn.EBMHeader_1.0.xsd"/>
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+              schemaLocation="../ebo/util.cmn.Basic_1.0.xsd"/>
+  <xsd:complexType name="UploadBillType">
+    <xsd:sequence>
+      <xsd:element name="header" type="hdr:HeaderType"/>
+      <xsd:element name="body">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="requestInformation"
+                         type="basic:MessageInformationType"/>
+            <xsd:element name="bills">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="billInfo" maxOccurs="unbounded">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="billStatusCode" minOccurs="0"
+                                     type="basic:BillStatusCode"/>
+                        <xsd:element name="officialId"
+                                     type="basic:String32Type"/>
+                        <xsd:element name="officailIdType"
+                                     type="basic:OfficialIdType"/>
+                        <xsd:element name="billCategory" type="xsd:string"
+                                     minOccurs="0"/>
+                        <xsd:element name="serviceType" type="xsd:string"
+                                     minOccurs="1"/>
+                        <xsd:element name="billCycle" type="xsd:string"
+                                     minOccurs="0"/>
+                        <xsd:element name="billNumber" type="xsd:string"
+                                     minOccurs="0"/>
+                        <xsd:element name="billingAccount"
+                                     type="basic:String32Type"/>
+                        <xsd:element name="dueAmount" type="xsd:decimal"/>
+                        <xsd:element name="dueDate" type="xsd:dateTime"/>
+                        <xsd:element name="openDate" type="xsd:dateTime"
+                                     minOccurs="0"/>
+                        <xsd:element name="closeDate" type="xsd:dateTime"
+                                     minOccurs="0"/>
+                        <xsd:element name="expiryDate" type="xsd:dateTime"/>
+                        <xsd:element name="paymentRanges" minOccurs="0">
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="billType"
+                                           type="basic:BillType"/>
+                              <xsd:element name="range" minOccurs="0"
+                                           maxOccurs="unbounded">
+                                <xsd:complexType>
+                                  <xsd:sequence>
+                                    <xsd:element name="lower"
+                                                 type="xsd:string"
+                                                 minOccurs="0"/>
+                                    <xsd:element name="upper"
+                                                 type="xsd:string"
+                                                 minOccurs="0"/>
+                                  </xsd:sequence>
+                                </xsd:complexType>
+                              </xsd:element>
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="uploadBill" type="UploadBillType"/>
+  <xsd:element name="uploadBillResponse" type="basic:ResponseType"/>
+  <xsd:element name="loadBill" type="UploadBillType"/>
+  <xsd:complexType name="LoadBillResponseType">
+    <xsd:sequence>
+      <xsd:element name="header" type="hdr:HeaderType"/>
+      <xsd:element name="body">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="clientDate" type="xsd:dateTime"/>
+            <xsd:element name="messageCode" type="xsd:string"/>
+            <xsd:element name="statusCode" type="xsd:string"/>
+            <xsd:element name="successRecordCount" type="xsd:long"/>
+            <xsd:element name="errorRecordCount" type="xsd:long"/>
+            <xsd:element name="bills">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="billInformationError" minOccurs="0"
+                               maxOccurs="unbounded">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="error">
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="errorCode" type="xsd:string"/>
+                              <xsd:element name="errorMessage"
+                                           type="xsd:string"/>
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="billingAccount" type="xsd:string"
+                                     minOccurs="0"/>
+                        <xsd:element name="billCycle" minOccurs="0"
+                                     type="xsd:string"/>
+                        <xsd:element name="billerId" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="loadBillResponse" type="LoadBillResponseType"/>
+  <xsd:complexType name="ConfirmBillType">
+    <xsd:sequence>
+      <xsd:element name="header" type="basic:ConfirmationType"/>
+      <xsd:element name="body" minOccurs="1" type="basic:InformationErrorType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="confirmBill"
+               type="ConfirmBillType"/>
+  <xsd:element name="confirmBillResponse"
+               type="basic:ConfirmationResponseType"/>
+</xsd:schema>

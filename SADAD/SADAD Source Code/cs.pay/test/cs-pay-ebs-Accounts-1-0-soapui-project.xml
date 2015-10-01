@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="c51840d9-c524-4fcd-b3f3-b16389fee57e" activeEnvironment="Default" name="cs.pay.ebs.Accounts_1.0" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="df1c084b-14d4-4853-b1c4-d6c73a0e1e4c" wsaVersion="NONE" name="cs.pay.ebs.Accounts.Binding" type="wsdl" bindingName="{http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts}cs.pay.ebs.Accounts.Binding" soapVersion="1_1" anonymous="optional" definition="file:/C:/middleware/AlMajdouie/SourceCode/cap/cs.pay/src/osb/core/ebs/cs.pay.ebs.Accounts_1.0.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\middleware\AlMajdouie\SourceCode\cap\cs.pay\src\osb\core\ebs\cs.pay.ebs.Accounts_1.0.wsdl"><con:part><con:url>file:\C:\middleware\AlMajdouie\SourceCode\cap\cs.pay\src\osb\core\ebs\cs.pay.ebs.Accounts_1.0.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wasec="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" xmlns:waseu="http://www.AlMajdouie.sa/ebo/util.flt.Fault">
+  <types>
+    <xsd:schema targetNamespace="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/types" elementFormDefault="qualified"/>
+    <xsd:schema>
+      <xsd:import schemaLocation="cs.pay.ebs.Accounts_1.0.xsd" namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="../ebo/util.flt.Fault_1.0.xsd" namespace="http://www.AlMajdouie.sa/ebo/util.flt.Fault"/>
+    </xsd:schema>
+  </types>
+  <message name="uploadAccount">
+    <part name="part" element="wasec:uploadAccount"/>
+  </message>
+  <message name="uploadAccountResponse">
+    <part name="part" element="wasec:uploadAccountResponse"/>
+  </message>
+  <message name="confirmAccount">
+    <part name="part" element="wasec:confirmAccount"/>
+  </message>
+  <message name="confirmAccountResponse">
+    <part name="part" element="wasec:confirmAccountResponse"/>
+  </message>
+  <message name="fault">
+    <part name="part" element="waseu:fault"/>
+  </message>
+  <portType name="cs.pay.ebs.Accounts">
+    <operation name="uploadAccount">
+      <input message="tns:uploadAccount"/>
+      <output message="tns:uploadAccountResponse"/>
+      <fault message="tns:fault" name="flt"/>
+    </operation>
+    <operation name="confirmAccount">
+      <input message="tns:confirmAccount"/>
+      <output message="tns:confirmAccountResponse"/>
+      <fault message="tns:fault" name="flt"/>
+    </operation>
+  </portType>
+  <binding name="cs.pay.ebs.Accounts.Binding" type="tns:cs.pay.ebs.Accounts">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="uploadAccount">
+      <soap:operation style="document" soapAction="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/uploadAccount"/>
+      <input>
+        <soap:body use="literal" parts="part"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="part"/>
+      </output>
+      <fault name="flt">
+        <soap:fault name="flt" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="confirmAccount">
+      <soap:operation style="document" soapAction="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/confirmAccount"/>
+      <input>
+        <soap:body use="literal" parts="part"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="part"/>
+      </output>
+      <fault name="flt">
+        <soap:fault name="flt" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="cs.pay.ebs.Accounts">
+    <port name="cs.pay.ebs.AccountsPort" binding="tns:cs.pay.ebs.Accounts.Binding">
+      <soap:address location="http://www.example.com"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\middleware\AlMajdouie\SourceCode\cap\cs.pay\src\osb\core\ebs\cs.pay.ebs.Accounts_1.0.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" xmlns:hdr="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" xmlns:basic="http://www.AlMajdouie.sa/ebo/util.cmn.Basic">
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" schemaLocation="../ebo/util.cmn.EBMHeader_1.0.xsd"/>
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" schemaLocation="../ebo/util.cmn.Basic_1.0.xsd"/>
+  <xsd:complexType name="UploadAccountType">
+    <xsd:sequence>
+      <xsd:element name="header" type="hdr:HeaderType"/>
+      <xsd:element name="body">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="localSender" type="xsd:string"/>
+            <xsd:element name="clientDate" type="xsd:dateTime"/>
+            <xsd:element name="messageCode" type="xsd:string"/>
+            <xsd:element name="accountInfo" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="billerId" type="xsd:string"/>
+                  <xsd:element name="billingAccount" type="xsd:string"/>
+                  <xsd:element name="serviceType" type="xsd:string"/>
+                  <xsd:element name="accountStatusCode" type="xsd:string"/>
+                  <xsd:element name="beneficiaryId" maxOccurs="unbounded" minOccurs="0">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="ID" type="xsd:string"/>
+                        <xsd:element name="type" type="xsd:string" minOccurs="1"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="uploadAccount" type="UploadAccountType"/>
+  <xsd:element name="uploadAccountResponse" type="basic:ResponseType"/>
+  <xsd:complexType name="ConfirmAccountType">
+    <xsd:sequence>
+      <xsd:element name="header" type="basic:ConfirmationType"/>
+      <xsd:element name="body">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="accountInfoError" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="error">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="errorCode" type="xsd:string"/>
+                        <xsd:element name="errorMessage" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="accountInformation">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="billingAccount" type="xsd:string"/>
+                        <xsd:element name="officialId" type="xsd:string"/>
+                        <xsd:element name="officialIdType" type="basic:OfficialIdType"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="confirmAccount" type="ConfirmAccountType"/>
+  <xsd:element name="confirmAccountResponse" type="basic:ConfirmationResponseType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\middleware\AlMajdouie\SourceCode\cap\cs.pay\src\osb\core\ebo\util.cmn.EBMHeader_1.0.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" xmlns:basic="http://www.AlMajdouie.sa/ebo/util.cmn.Basic">
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" schemaLocation="../ebo/util.cmn.Basic_1.0.xsd"/>
+  <xsd:complexType name="HeaderType">
+    <xsd:sequence>
+      <xsd:element name="senderID" type="xsd:string" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>A sample element</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="receiverID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="rquid" type="basic:UidType" minOccurs="0"/>
+      <xsd:element name="contentType" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="header" type="HeaderType">
+    <xsd:annotation>
+      <xsd:documentation>A sample element</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ebmCID" type="EbmIDType"/>
+  <xsd:element name="ebmMID" type="EbmIDType"/>
+  <xsd:element name="ebmRTID" type="EbmIDType"/>
+  <xsd:element name="ebmPID" type="EbmIDType"/>
+  <xsd:element name="ebmSID" type="EbmSIDType"/>
+  <xsd:simpleType name="EbmIDType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="EbmSIDType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\middleware\AlMajdouie\SourceCode\cap\cs.pay\src\osb\core\ebo\util.cmn.Basic_1.0.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" xmlns:hdr="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader">
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" schemaLocation="../ebo/util.cmn.EBMHeader_1.0.xsd"/>
+  <xsd:simpleType name="BillStatusCode">
+    <xsd:restriction base="String32Type">
+      <xsd:enumeration value="BillNew"/>
+      <xsd:enumeration value="BillUpdated"/>
+      <xsd:enumeration value="BillExpired"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="OfficialIdType">
+    <xsd:restriction base="String32Type">
+      <xsd:enumeration value="NAT"/>
+      <xsd:enumeration value="IQA"/>
+      <xsd:enumeration value="BIS"/>
+      <xsd:enumeration value="ACT"/>
+      <xsd:enumeration value="SID"/>
+      <xsd:enumeration value="BTL"/>
+      <xsd:enumeration value="BED"/>
+      <xsd:enumeration value="BIE"/>
+      <xsd:enumeration value="SED"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="String32Type">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="UidType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CurrencyType">
+    <xsd:annotation>
+      <xsd:documentation>currency amount</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:decimal"/>
+  </xsd:simpleType>
+  <xsd:complexType name="PropertyType">
+    <xsd:sequence>
+      <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="PropertySetType">
+    <xsd:sequence>
+      <xsd:element name="property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseType">
+    <xsd:sequence>
+      <xsd:element name="header" type="hdr:HeaderType"/>
+      <xsd:element name="body">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="clientDate" type="xsd:dateTime"/>
+            <xsd:element name="messageCode" type="xsd:string"/>
+            <xsd:element name="statusCode" type="xsd:string"/>
+            <xsd:element name="respUid" type="xsd:string"/>
+            <xsd:element name="timestamp" type="xsd:dateTime" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConfirmationType">
+    <xsd:sequence>
+      <xsd:element name="localSender" type="xsd:string"/>
+      <xsd:element name="transactionTimestamp" type="xsd:dateTime"/>
+      <xsd:element name="messageCode" type="xsd:string"/>
+      <xsd:element name="statusCode" type="BillStatusCode"/>
+      <xsd:element name="rqUID" type="xsd:string"/>
+      <xsd:element name="asyncRqUID" type="xsd:string"/>
+      <xsd:element name="uploadDate" type="xsd:string"/>
+      <xsd:element name="processingDate" type="xsd:string"/>
+      <xsd:element name="successRecordCount" type="xsd:long"/>
+      <xsd:element name="errorRecordCount" type="xsd:long"/>
+      <xsd:element name="pendingRecordCount" type="xsd:long" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ConfirmationResponseType">
+    <xsd:sequence>
+      <xsd:element name="header" type="hdr:HeaderType"/>
+      <xsd:element name="body" type="ConfirmationType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MessageInformationType">
+    <xsd:sequence>
+      <xsd:element name="clientDate" type="xsd:dateTime"/>
+      <xsd:element name="localSender" type="xsd:string"/>
+      <xsd:element name="messageCode" type="xsd:string"/>
+      <xsd:element name="requestUID" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\middleware\AlMajdouie\SourceCode\cap\cs.pay\src\osb\core\ebo\util.flt.Fault_1.0.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://www.AlMajdouie.sa/ebo/util.flt.Fault" elementFormDefault="qualified" version="1.0" xmlns="http://www.AlMajdouie.sa/ebo/util.flt.Fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:bsc="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" xmlns:tns="http://www.AlMajdouie.sa/ebo/util.flt.Fault" xmlns:hdr="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader">
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" schemaLocation="util.cmn.Basic_1.0.xsd"/>
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" schemaLocation="util.cmn.EBMHeader_1.0.xsd"/>
+  <xsd:complexType name="CauseListType">
+    <xsd:sequence>
+      <xsd:element name="cause" type="tns:FaultType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="causeList" type="tns:CauseListType"/>
+  <xsd:complexType name="ErrorType">
+    <xsd:sequence>
+      <xsd:element name="errorCode" type="xsd:string"/>
+      <xsd:element name="description" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="error" type="ErrorType"/>
+  <xsd:complexType name="ErrorListType">
+    <xsd:annotation>
+      <xsd:documentation>Enables the support of throwing a fault based on many errors received at once from a source.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="error" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="errorList" type="ErrorListType"/>
+  <xsd:complexType name="FaultType">
+    <xsd:sequence>
+      <xsd:element name="source" type="xsd:string"/>
+      <xsd:element ref="errorList"/>
+      <xsd:element name="details" type="xsd:anyType"/>
+      <xsd:element ref="hdr:ebmCID"/>
+      <xsd:element ref="hdr:ebmMID"/>
+      <xsd:element name="faultInstanceId" type="bsc:UidType"/>
+      <xsd:element name="propertySet" type="bsc:PropertySetType"/>
+      <xsd:element name="timestamp" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element ref="causeList" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>This lists the faults which 'caused' this fault to be generated.
+        This is a list and therefore ordering of the nodes is important.
+        The first fault in the list is the fault which caused this fault (the fault containing this list).
+        The second fault in the list if the fault which caused the first fault in the list and so on and so on.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="fault" type="FaultType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://damevlsoaa2d.almajdouie.com</con:endpoint></con:endpoints><con:operation id="17b25fb0-7db5-48f1-81ae-705f8652a58d" isOneWay="false" action="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/confirmAccount" name="confirmAccount" bindingOperationName="confirmAccount" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5c65d61e-0a6f-4042-96e9-1016915b80f2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://damevlsoaa2d.almajdouie.com</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cs="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" xmlns:util="http://www.AlMajdouie.sa/ebo/util.cmn.Basic">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <cs:confirmAccount>\r
+         <cs:header>\r
+            <util:localSender>?</util:localSender>\r
+            <util:transactionTimestamp>?</util:transactionTimestamp>\r
+            <util:messageCode>?</util:messageCode>\r
+            <util:statusCode>?</util:statusCode>\r
+            <util:rqUID>?</util:rqUID>\r
+            <util:asyncRqUID>?</util:asyncRqUID>\r
+            <util:uploadDate>?</util:uploadDate>\r
+            <util:processingDate>?</util:processingDate>\r
+            <util:successRecordCount>?</util:successRecordCount>\r
+            <util:errorRecordCount>?</util:errorRecordCount>\r
+            <!--Optional:-->\r
+            <util:pendingRecordCount>?</util:pendingRecordCount>\r
+         </cs:header>\r
+         <cs:body>\r
+            <!--Zero or more repetitions:-->\r
+            <cs:accountInfoError>\r
+               <cs:error>\r
+                  <cs:errorCode>?</cs:errorCode>\r
+                  <cs:errorMessage>?</cs:errorMessage>\r
+               </cs:error>\r
+               <cs:accountInformation>\r
+                  <cs:billingAccount>?</cs:billingAccount>\r
+                  <cs:officialId>?</cs:officialId>\r
+                  <cs:officialIdType>?</cs:officialIdType>\r
+               </cs:accountInformation>\r
+            </cs:accountInfoError>\r
+         </cs:body>\r
+      </cs:confirmAccount>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/confirmAccount"/></con:call></con:operation><con:operation id="d12f76f3-5cd4-4b40-b28f-ee77c8f37e89" isOneWay="false" action="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/uploadAccount" name="uploadAccount" bindingOperationName="uploadAccount" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="97cc3891-83c7-4259-8610-049d61d42e30" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://damevlsoaa2d.almajdouie.com:8012/ebs/cs.pay.ebs.Accounts_1.0</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cs="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" xmlns:util="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <cs:uploadAccount>\r
+         <cs:header>
+         <util:rquid>E8378812-1F47-444E-B34B-AD847DB3B69B</util:rquid>
+         </cs:header>\r
+         <cs:body>\r
+            <cs:localSender>OLFM</cs:localSender>\r
+            <cs:clientDate>2015-10-26T21:32:52</cs:clientDate>\r
+            <!--1 or more repetitions:-->\r
+            <cs:accountInfo>\r
+               <cs:billingAccount>1231241</cs:billingAccount>\r
+               <cs:accountStatusCode>AcctNew</cs:accountStatusCode>\r
+            </cs:accountInfo>\r
+            <cs:accountInfo>
+               <cs:billingAccount>1231242</cs:billingAccount>
+               <cs:accountStatusCode>AcctNew</cs:accountStatusCode>
+            </cs:accountInfo>
+         </cs:body>\r
+      </cs:uploadAccount>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/uploadAccount"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

@@ -1,0 +1,13 @@
+<adapter-config name="getBillResponse" adapter="Database Adapter" wsdlLocation="getBillResponse.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/Apps/DEVAMG" UIConnectionName="DEVAMG" adapterRef=""/>
+  <endpoint-interaction portType="getBillResponse_ptt" operation="getBillResponse">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="PackageName" value="XXAMG_RY_SADAD_W_PKG"/>
+      <property name="ProcedureName" value="GET_BILL_RESPONSE"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <output/>
+  </endpoint-interaction>
+
+</adapter-config>

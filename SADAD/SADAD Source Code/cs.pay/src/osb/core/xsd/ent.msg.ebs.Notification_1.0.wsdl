@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="http://www.almajdouie.sa/ebs/ent.msg.Notification"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://www.almajdouie.sa/ebs/ent.msg.Notification"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <types>
+    <xsd:schema targetNamespace="http://www.almajdouie.sa/ebs/ent.msg.Notification/types"
+                elementFormDefault="qualified"/>
+    <xsd:schema>
+      <xsd:import schemaLocation="ent.msg.ebs.Notification.xsd"
+                  namespace="http://www.almajdouie.sa/ebs/ent.msg.Notification"/>
+    </xsd:schema>
+  </types>
+  <message name="sendSMS">
+    <part name="part" element="tns:sendSMS"/>
+  </message>
+  <message name="sendSMSResponse">
+    <part name="part" element="tns:sendSMSResponse"/>
+  </message>
+  <portType name="ent.msg.ebs.Notification">
+    <operation name="sendSMS">
+      <input message="tns:sendSMS"/>
+      <output message="tns:sendSMSResponse"/>
+    </operation>
+  </portType>
+  <binding name="ent.msg.ebs.NotificationSOAP11Binding"
+           type="tns:ent.msg.ebs.Notification">
+    <soap:binding style="document"
+                  transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="sendSMS">
+      <soap:operation style="document"
+                      soapAction="http://www.almajdouie.sa/ebs/ent.msg.Notification/sendSMS"/>
+      <input>
+        <soap:body use="literal" parts="part"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="part"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ent.msg.ebs.Notification">
+    <port name="ent.msg.ebs.NotificationPort"
+          binding="tns:ent.msg.ebs.NotificationSOAP11Binding">
+      <soap:address location="http://www.example.com"/>
+    </port>
+  </service>
+</definitions>

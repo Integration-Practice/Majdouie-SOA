@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>cs.pay.mediator.Bills.mplan</file>
+      <name>cs.pay.mediator.Bills.mplan</name>
+      <fix/>
+      <msg>Operation\Event "uploadBill" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>cs.pay.mediator.Bills.mplan</file>
+      <name>cs.pay.mediator.Bills.mplan</name>
+      <fix/>
+      <msg>Operation\Event "loadBill" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+</Faults>

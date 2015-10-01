@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:schemaEntry xmlns:con="http://www.bea.com/wli/sb/resources/config">
+    <con:schema><![CDATA[<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts"
+            xmlns:hdr="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+            xmlns:basic="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+            targetNamespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts"
+            elementFormDefault="qualified">
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+              schemaLocation="../ebo/util.cmn.EBMHeader_1.0.xsd"/>
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+              schemaLocation="../ebo/util.cmn.Basic_1.0.xsd"/>
+  <xsd:complexType name="UploadAccountType">
+    <xsd:sequence>
+      <xsd:element name="header" type="hdr:HeaderType"/>
+      <xsd:element name="body">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="localSender" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="clientDate" type="xsd:dateTime"/>
+            <xsd:element name="messageCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="accountInfo" maxOccurs="unbounded"
+                         type="AccountInformationType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AccountInformationType">
+    <xsd:sequence>
+      <xsd:element name="billerId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="billingAccount" type="xsd:string"/>
+      <xsd:element name="serviceType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="accountStatusCode" type="xsd:string"/>
+      <xsd:element name="beneficiaryId" maxOccurs="unbounded" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="officialId" type="xsd:string"/>
+            <xsd:element name="officialIdType" type="basic:OfficialIdType"
+                         minOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="uploadAccount" type="UploadAccountType"/>
+  <xsd:element name="uploadAccountResponse" type="basic:ResponseType"/>
+  <xsd:complexType name="ConfirmAccountType">
+    <xsd:sequence>
+      <xsd:element name="header" type="basic:ConfirmationType"/>
+      <xsd:element name="body">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="accountInfoError" minOccurs="0"
+                         maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="error">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="errorCode" type="xsd:string"/>
+                        <xsd:element name="errorMessage" type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="accountInformation">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="billingAccount" type="xsd:string"/>
+                        <xsd:element name="officialId" type="xsd:string"
+                                     minOccurs="0"/>
+                        <xsd:element name="officialIdType"
+                                     type="basic:OfficialIdType" minOccurs="0"/>
+                        <xsd:element name="billerId" type="xsd:string"/>
+                        <xsd:element name="serviceType" type="xsd:string"/>
+                        <xsd:element name="accountStatusCode"
+                                     type="xsd:string"/>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="confirmAccount" type="ConfirmAccountType"/>
+  <xsd:element name="confirmAccountResponse"
+               type="basic:ConfirmationResponseType"/>
+</xsd:schema>]]></con:schema>
+    <con:dependencies>
+        <con:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" schemaLocation="../ebo/util.cmn.EBMHeader_1.0.xsd" ref="core/ebo/util.cmn.EBMHeader_1.0"/>
+        <con:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" schemaLocation="../ebo/util.cmn.Basic_1.0.xsd" ref="core/ebo/util.cmn.Basic_1.0"/>
+    </con:dependencies>
+    <con:targetNamespace>http://www.AlMajdouie.sa/ebs/cs.pay.Accounts</con:targetNamespace>
+</con:schemaEntry>

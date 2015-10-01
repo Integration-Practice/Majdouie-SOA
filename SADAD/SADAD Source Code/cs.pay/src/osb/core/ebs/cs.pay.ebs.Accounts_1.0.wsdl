@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:wasec="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts"
+             xmlns:waseu="http://www.AlMajdouie.sa/ebo/util.flt.Fault">
+  <types>
+    <xsd:schema targetNamespace="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/types"
+                elementFormDefault="qualified"/>
+    <xsd:schema>
+      <xsd:import schemaLocation="cs.pay.ebs.Accounts_1.0.xsd"
+                  namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="../ebo/util.flt.Fault_1.0.xsd"
+                  namespace="http://www.AlMajdouie.sa/ebo/util.flt.Fault"/>
+    </xsd:schema>
+  </types>
+  <message name="uploadAccount">
+    <part name="part" element="wasec:uploadAccount"/>
+  </message>
+  <message name="uploadAccountResponse">
+    <part name="part" element="wasec:uploadAccountResponse"/>
+  </message>
+  <message name="confirmAccount">
+    <part name="part" element="wasec:confirmAccount"/>
+  </message>
+  <message name="confirmAccountResponse">
+    <part name="part" element="wasec:confirmAccountResponse"/>
+  </message>
+  <message name="fault">
+    <part name="part" element="waseu:fault"/>
+  </message>
+  <portType name="cs.pay.ebs.Accounts">
+    <operation name="uploadAccount">
+      <input message="tns:uploadAccount"/>
+      <output message="tns:uploadAccountResponse"/>
+      <fault message="tns:fault" name="flt"/>
+    </operation>
+    <operation name="confirmAccount">
+      <input message="tns:confirmAccount"/>
+      <output message="tns:confirmAccountResponse"/>
+      <fault message="tns:fault" name="flt"/>
+    </operation>
+  </portType>
+  <binding name="cs.pay.ebs.Accounts.Binding" type="tns:cs.pay.ebs.Accounts">
+    <soap:binding style="document"
+                  transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="uploadAccount">
+      <soap:operation style="document"
+                      soapAction="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/uploadAccount"/>
+      <input>
+        <soap:body use="literal" parts="part"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="part"/>
+      </output>
+      <fault name="flt">
+        <soap:fault name="flt" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="confirmAccount">
+      <soap:operation style="document"
+                      soapAction="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts/confirmAccount"/>
+      <input>
+        <soap:body use="literal" parts="part"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="part"/>
+      </output>
+      <fault name="flt">
+        <soap:fault name="flt" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="cs.pay.ebs.Accounts">
+    <port name="cs.pay.ebs.AccountsPort"
+          binding="tns:cs.pay.ebs.Accounts.Binding">
+      <soap:address location="http://damevlsoaa2d.almajdouie.com:8011/ebs/cs.pay.ebs.Accounts_1.0"/>
+    </port>
+  </service>
+</definitions>

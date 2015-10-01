@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/selectAccounts" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/selectAccounts" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="selectAccountsInput" type="selectAccountsInput"/>
+   <xs:complexType name="selectAccountsInput">
+      <xs:sequence>
+         <xs:element name="reqid" type="xs:string" nillable="true"/>
+         <xs:element name="statusCode" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="selectAccountsOutputCollection" type="selectAccountsOutputCollection"/>
+   <xs:complexType name="selectAccountsOutputCollection">
+      <xs:sequence>
+         <xs:element name="selectAccountsOutput" type="selectAccountsOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="selectAccountsOutput">
+      <xs:sequence>
+         <xs:element name="ACC_REQ_ID" type="xs:string" nillable="true"/>
+         <xs:element name="ACCOUNT_NUMER" type="xs:string" nillable="true"/>
+         <xs:element name="OFFICIAL_ID_TYPE" type="xs:string" nillable="true"/>
+         <xs:element name="CUST_OFFICIAL_ID" type="xs:string" nillable="true"/>
+         <xs:element name="REQ_DATE" type="xs:dateTime" nillable="true"/>
+         <xs:element name="STATUS_CODE" type="xs:string" nillable="true"/>
+         <xs:element name="BATCH_ERR_ITEMS" type="xs:decimal" nillable="true"/>
+         <xs:element name="BATCH_TOT_ITEMS" type="xs:decimal" nillable="true"/>
+         <xs:element name="BATCH_PASS_ITEMS" type="xs:decimal" nillable="true"/>
+         <xs:element name="CREATION_DATE" type="xs:dateTime" nillable="true"/>
+         <xs:element name="CREATED_BY" type="xs:decimal" nillable="true"/>
+         <xs:element name="LAST_UPDATE_DATE" type="xs:dateTime" nillable="true"/>
+         <xs:element name="LAST_UPDATED_BY" type="xs:decimal" nillable="true"/>
+         <xs:element name="LAST_UPDATE_LOGIN" type="xs:decimal" nillable="true"/>
+         <xs:element name="REQUEST_ID" type="xs:decimal" nillable="true"/>
+         <xs:element name="ORG_ID" type="xs:decimal" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

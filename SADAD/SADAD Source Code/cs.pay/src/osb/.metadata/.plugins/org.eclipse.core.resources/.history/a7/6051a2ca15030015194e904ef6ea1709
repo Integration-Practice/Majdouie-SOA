@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+  <ser:coreEntry isProxy="true" isEnabled="true">
+    <ser:binding type="SOAP" isSoap12="false" xsi:type="con1:SoapBindingType" xmlns:con1="http://www.bea.com/wli/sb/services/bindings/config">
+      <con1:wsdl ref="core/ebs/cs.pay.ebs.Accounts_1.0"/>
+      <con1:binding>
+        <con1:name>cs.pay.ebs.Accounts.Binding</con1:name>
+        <con1:namespace>http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts</con1:namespace>
+      </con1:binding>
+      <con1:selector type="SOAP body"/>
+      <con1:WSI-compliant>false</con1:WSI-compliant>
+    </ser:binding>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+      <ser:pipelineMonitoringLevel>Pipeline</ser:pipelineMonitoringLevel>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+    <ser:ws-policy>
+      <ser:binding-mode>wsdl-policy-attachments</ser:binding-mode>
+    </ser:ws-policy>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>http</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:URI>
+      <env:value>/ebs/cs.pay.ebs.Accounts_1.0</env:value>
+    </tran:URI>
+    <tran:inbound-properties/>
+    <tran:all-headers>false</tran:all-headers>
+    <tran:provider-specific>
+      <http:inbound-properties/>
+    </tran:provider-specific>
+  </ser:endpointConfig>
+  <ser:router errorHandler="_onErrorHandler-2979028270343561924--b681fb8.14d80fce60a.-7e0e">
+    <con:pipeline type="request" name="uploadAccount_InitialiseVariablesPipelinePair_request">
+      <con:stage name="Set_operationName" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context/>
+        <con:actions>
+          <con1:assign varName="operationName">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6f6f</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$inbound/ctx:service/ctx:operation</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+      <con:stage name="Set_requestKey" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs1" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:assign varName="requestKey">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6f6e</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$body/cs1:uploadAccount/cs1:body/cs1:clientDate</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+      <con:stage name="Set_ebmCID">
+        <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" prefix="util" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs1" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+          <con1:assign varName="ebmCID">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-9122819836626954344--52c59f4f.14d6ae5b73a.-7f92</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$body/cs1:uploadAccount/cs1:header/util:rquid</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+      <con:stage name="Set_signonProfileDVM">
+        <con:context/>
+        <con:actions>
+          <con1:assign varName="signonProfileDVM" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1989341650270893579--1c941dd0.14d47fa7da9.-7e1b</con5:id>
+            <con1:expr>
+              <con5:xqueryTransform xmlns:con5="http://www.bea.com/wli/sb/stages/config">
+                <con5:resource ref="core/dvm/signonProfileDVM"/>
+              </con5:xqueryTransform>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="uploadAccount_InitialiseVariablesPipelinePair_response"/>
+    <con:pipeline type="request" name="confirmAccount_InitialiseVariablesPipelinePair_request">
+      <con:stage name="Set_operationName" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context/>
+        <con:actions>
+          <con1:assign varName="operationName">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6f35</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$inbound/ctx:service/ctx:operation</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+      <con:stage name="Set_requestKey" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs1" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" prefix="util" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:assign varName="requestKey">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6f34</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$body/cs1:confirmAccount/cs1:header/util:asyncRqUID</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+      <con:stage name="Set_ebmCID">
+        <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader" prefix="util" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs1" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic" prefix="util1" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+          <con1:assign varName="ebmCID">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-9122819836626954344--52c59f4f.14d6ae5b73a.-7f23</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$body/cs1:confirmAccount/cs1:header/util1:rqUID</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+      <con:stage name="Set_signonProfileDVM">
+        <con:context/>
+        <con:actions>
+          <con1:assign varName="signonProfileDVM" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-8615418959365526741-145af131.14d6c64d45d.-7e44</con5:id>
+            <con1:expr>
+              <con5:xqueryTransform xmlns:con5="http://www.bea.com/wli/sb/stages/config">
+                <con5:resource ref="core/dvm/signonProfileDVM"/>
+              </con5:xqueryTransform>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="confirmAccount_InitialiseVariablesPipelinePair_response"/>
+    <con:pipeline type="request" name="uploadAccount_LoggingPipelinePair_request">
+      <con:stage name="LogRequest" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context/>
+        <con:actions>
+          <con5:report xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+            <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6ec3</con6:id>
+            <con5:expr>
+              <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body</con6:xqueryText>
+            </con5:expr>
+            <con5:labels>
+              <con5:key>RQ</con5:key>
+              <con5:varName>requestKey</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+            <con5:labels>
+              <con5:key>op</con5:key>
+              <con5:varName>operationName</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+            <con5:labels>
+              <con5:key>ebmCID</con5:key>
+              <con5:varName>ebmCID</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+          </con5:report>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="uploadAccount_LoggingPipelinePair_response">
+      <con:stage name="LogResponse" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context/>
+        <con:actions>
+          <con5:report xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+            <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-1989341650270893579--1c941dd0.14d47fa7da9.-7daa</con6:id>
+            <con5:expr>
+              <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body</con6:xqueryText>
+            </con5:expr>
+            <con5:labels>
+              <con5:key>RS</con5:key>
+              <con5:varName>requestKey</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+            <con5:labels>
+              <con5:key>op</con5:key>
+              <con5:varName>operationName</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+            <con5:labels>
+              <con5:key>ebmCID</con5:key>
+              <con5:varName>ebmCID</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+          </con5:report>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="request" name="confirmAccount_LoggingPipelinePair_request">
+      <con:stage name="LogRequest" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context/>
+        <con:actions>
+          <con5:report xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+            <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6e89</con6:id>
+            <con5:expr>
+              <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body</con6:xqueryText>
+            </con5:expr>
+            <con5:labels>
+              <con5:key>RQ</con5:key>
+              <con5:varName>requestKey</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+            <con5:labels>
+              <con5:key>op</con5:key>
+              <con5:varName>operationName</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+            <con5:labels>
+              <con5:key>ebmCID</con5:key>
+              <con5:varName>ebmCID</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+          </con5:report>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="confirmAccount_LoggingPipelinePair_response">
+      <con:stage name="LogResponse">
+        <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+        <con:actions xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+          <con5:report xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+            <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-8615418959365526741-145af131.14d6c64d45d.-7f5c</con6:id>
+            <con5:expr>
+              <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body</con6:xqueryText>
+            </con5:expr>
+            <con5:labels>
+              <con5:key>RS</con5:key>
+              <con5:varName>requestKey</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+            <con5:labels>
+              <con5:key>op</con5:key>
+              <con5:varName>operationName</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+            <con5:labels>
+              <con5:key>ebmCID</con5:key>
+              <con5:varName>ebmCID</con5:varName>
+              <con5:value>
+                <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+              </con5:value>
+            </con5:labels>
+          </con5:report>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="request" name="uploadAccount_ValidationPipelinePair_request">
+      <con:stage name="ValidateRequest" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs1" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:assign varName="errorCodeList">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6e0b</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">"Request"</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:assign varName="request">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6e0a</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$body/cs1:uploadAccount</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:validate>
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6e09</con5:id>
+            <con1:schema ref="core/ebs/cs.pay.ebs.Accounts_1.0"/>
+            <con1:schemaElement xmlns:cs="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" xmlns:cs1="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts">cs1:uploadAccount</con1:schemaElement>
+            <con1:varName>request</con1:varName>
+            <con1:location>
+              <con5:xpathText xmlns:con5="http://www.bea.com/wli/sb/stages/config">.</con5:xpathText>
+            </con1:location>
+          </con1:validate>
+          <con1:assign varName="errorCodeList">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6e08</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">""</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="uploadAccount_ValidationPipelinePair_response">
+      <con:stage name="ValidateResponse" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs1" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:assign varName="errorCodeList">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6e07</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">"Response"</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:assign varName="response">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6e06</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$body/cs1:uploadAccountResponse</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:validate>
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6e05</con5:id>
+            <con1:schema ref="core/ebs/cs.pay.ebs.Accounts_1.0"/>
+            <con1:schemaElement xmlns:cs="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" xmlns:cs1="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts">cs1:uploadAccountResponse</con1:schemaElement>
+            <con1:varName>response</con1:varName>
+            <con1:location>
+              <con5:xpathText xmlns:con5="http://www.bea.com/wli/sb/stages/config">.</con5:xpathText>
+            </con1:location>
+          </con1:validate>
+          <con1:assign varName="errorCodeList">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6e04</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">""</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="request" name="confirmAccount_ValidationPipelinePair_request">
+      <con:stage name="ValidateRequest" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs1" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:assign varName="errorCodeList">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6d51</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">"Request"</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:assign varName="request">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6d50</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$body/cs1:confirmAccount</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:validate>
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6d4f</con5:id>
+            <con1:schema ref="core/ebs/cs.pay.ebs.Accounts_1.0"/>
+            <con1:schemaElement xmlns:cs="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" xmlns:cs1="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts">cs1:confirmAccount</con1:schemaElement>
+            <con1:varName>request</con1:varName>
+            <con1:location>
+              <con5:xpathText xmlns:con5="http://www.bea.com/wli/sb/stages/config">.</con5:xpathText>
+            </con1:location>
+          </con1:validate>
+          <con1:assign varName="errorCodeList">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6d4e</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">""</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="confirmAccount_ValidationPipelinePair_response">
+      <con:stage name="ValidateResponse" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs1" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:assign varName="errorCodeList">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6d4d</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">"Response"</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:assign varName="response">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6d4c</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">$body/cs1:confirmAccountResponse</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:validate>
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6d4b</con5:id>
+            <con1:schema ref="core/ebs/cs.pay.ebs.Accounts_1.0"/>
+            <con1:schemaElement xmlns:cs="http://www.AlMajdouie.sa/ebs/cs.pay.Bills" xmlns:cs1="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts">cs1:confirmAccountResponse</con1:schemaElement>
+            <con1:varName>response</con1:varName>
+            <con1:location>
+              <con5:xpathText xmlns:con5="http://www.bea.com/wli/sb/stages/config">.</con5:xpathText>
+            </con1:location>
+          </con1:validate>
+          <con1:assign varName="errorCodeList">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6d4a</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">""</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="request" name="uploadAccount_ProcessRequestResponsePipelinePair_request"/>
+    <con:pipeline type="response" name="uploadAccount_ProcessRequestResponsePipelinePair_response">
+      <con:stage name="MapResponse" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:replace contents-only="true" varName="body">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1989341650270893579--1c941dd0.14d47fa7da9.-7dfe</con5:id>
+            <con1:location>
+              <con5:xpathText xmlns:con5="http://www.bea.com/wli/sb/stages/config">.</con5:xpathText>
+            </con1:location>
+            <con1:expr>
+              <con5:xqueryTransform xmlns:con5="http://www.bea.com/wli/sb/stages/config">
+                <con5:resource ref="cs.pay/cs.pay.ebs.Accounts_1.0/xquery/AccountUploadRs_uploadAccountResponse"/>
+                <con5:param name="signonProfileDVM">
+                  <con5:path>$signonProfileDVM</con5:path>
+                </con5:param>
+                <con5:param name="type">
+                  <con5:path>"response"</con5:path>
+                </con5:param>
+                <con5:param name="sADAD1">
+                  <con5:path>$body/*:SADAD</con5:path>
+                </con5:param>
+                <con5:param name="operation">
+                  <con5:path>$operation</con5:path>
+                </con5:param>
+              </con5:xqueryTransform>
+            </con1:expr>
+          </con1:replace>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="request" name="confirmAccount_ProcessRequestResponsePipelinePair_request"/>
+    <con:pipeline type="response" name="confirmAccount_ProcessRequestResponsePipelinePair_response">
+      <con:stage name="MapResponse" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:replace contents-only="true" varName="body">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-8615418959365526741-145af131.14d6c64d45d.-7f05</con5:id>
+            <con1:location>
+              <con5:xpathText xmlns:con5="http://www.bea.com/wli/sb/stages/config">.</con5:xpathText>
+            </con1:location>
+            <con1:expr>
+              <con5:xqueryTransform xmlns:con5="http://www.bea.com/wli/sb/stages/config">
+                <con5:resource ref="cs.pay/cs.pay.ebs.Accounts_1.0/xquery/confirmAccountResponse_confirmAccountResponse"/>
+                <con5:param name="signonProfileDVM">
+                  <con5:path>$signonProfileDVM</con5:path>
+                </con5:param>
+                <con5:param name="confirmAccountResponse1">
+                  <con5:path>$body/cs:confirmAccountResponse</con5:path>
+                </con5:param>
+                <con5:param name="type">
+                  <con5:path>"response"</con5:path>
+                </con5:param>
+                <con5:param name="operation">
+                  <con5:path>$operation</con5:path>
+                </con5:param>
+              </con5:xqueryTransform>
+            </con1:expr>
+          </con1:replace>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="request" name="uploadAccount_AccountUploadRqRoutePipelinePair_request">
+      <con:stage name="MapRequest" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:replace contents-only="true" varName="body">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-1989341650270893579--1c941dd0.14d47fa7da9.-7ea5</con5:id>
+            <con1:location>
+              <con5:xpathText xmlns:con5="http://www.bea.com/wli/sb/stages/config">.</con5:xpathText>
+            </con1:location>
+            <con1:expr>
+              <con5:xqueryTransform xmlns:con5="http://www.bea.com/wli/sb/stages/config">
+                <con5:resource ref="cs.pay/cs.pay.ebs.Accounts_1.0/xquery/uploadAccount_AccountUploadRq"/>
+                <con5:param name="signonProfileDVM">
+                  <con5:path>$signonProfileDVM</con5:path>
+                </con5:param>
+                <con5:param name="type">
+                  <con5:path>"request"</con5:path>
+                </con5:param>
+                <con5:param name="operation">
+                  <con5:path>$operation</con5:path>
+                </con5:param>
+                <con5:param name="uploadAccount1">
+                  <con5:path>$body/cs:uploadAccount</con5:path>
+                </con5:param>
+              </con5:xqueryTransform>
+            </con1:expr>
+          </con1:replace>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="uploadAccount_AccountUploadRqRoutePipelinePair_response"/>
+    <con:pipeline type="request" name="confirmAccount_AccountConfirmRqRoutePipelinePair_request">
+      <con:stage name="MapRequest" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context>
+          <con5:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs" xmlns:con5="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:replace contents-only="true" varName="body">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-8615418959365526741-145af131.14d6c64d45d.-7f22</con5:id>
+            <con1:location>
+              <con5:xpathText xmlns:con5="http://www.bea.com/wli/sb/stages/config">.</con5:xpathText>
+            </con1:location>
+            <con1:expr>
+              <con5:xqueryTransform xmlns:con5="http://www.bea.com/wli/sb/stages/config">
+                <con5:resource ref="cs.pay/cs.pay.ebs.Accounts_1.0/xquery/confirmAccount_confirmAccount"/>
+                <con5:param name="confirmAccount1">
+                  <con5:path>$body/cs:confirmAccount</con5:path>
+                </con5:param>
+              </con5:xqueryTransform>
+            </con1:expr>
+          </con1:replace>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="confirmAccount_AccountConfirmRqRoutePipelinePair_response"/>
+    <con:pipeline type="request" name="default_UnsupportedOperationPipelinePair_request">
+      <con:stage name="RaiseError" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+        <con:context/>
+        <con:actions>
+          <con1:assign varName="errorCodeList">
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6a3f</con5:id>
+            <con1:expr>
+              <con5:xqueryText xmlns:con5="http://www.bea.com/wli/sb/stages/config">"UNSUPPORTED_OPERATION"</con5:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:Error>
+            <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6a3e</con5:id>
+            <con1:errCode>INTERNAL</con1:errCode>
+          </con1:Error>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="default_UnsupportedOperationPipelinePair_response"/>
+    <con:pipeline type="error" name="_onErrorHandler-2979028270343561924--b681fb8.14d80fce60a.-7e0e">
+      <con:stage name="ServiceErrorHandler">
+        <con:context>
+          <con1:userNsDecl namespace="http://www.AlMajdouie.sa/ebo/util.flt.Fault" prefix="flt"/>
+          <con1:varNsDecl namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts" prefix="cs"/>
+        </con:context>
+        <con:actions>
+          <con2:report>
+            <con1:id>_ActionId-2979028270343561924--b681fb8.14d80fce60a.-7da0</con1:id>
+            <con2:expr>
+              <con1:xqueryText><![CDATA[<errorMsg>
+	<body>{$body}</body>
+	<fault>{$fault}</fault>
+</errorMsg>]]></con1:xqueryText>
+            </con2:expr>
+            <con2:labels>
+              <con2:key>FLTa</con2:key>
+              <con2:varName>requestKey</con2:varName>
+              <con2:value>
+                <con1:xpathText>.</con1:xpathText>
+              </con2:value>
+            </con2:labels>
+            <con2:labels>
+              <con2:key>op</con2:key>
+              <con2:varName>operationName</con2:varName>
+              <con2:value>
+                <con1:xpathText>.</con1:xpathText>
+              </con2:value>
+            </con2:labels>
+            <con2:labels>
+              <con2:key>ebmCID</con2:key>
+              <con2:varName>ebmCID</con2:varName>
+              <con2:value>
+                <con1:xpathText>.</con1:xpathText>
+              </con2:value>
+            </con2:labels>
+          </con2:report>
+          <con3:ifThenElse>
+            <con1:id>_ActionId-2979028270343561924--b681fb8.14d80fce60a.-7d74</con1:id>
+            <con3:case>
+              <con3:condition>
+                <con1:xqueryText>$fault/ctx:errorCode = "INTERNAL" or
+exists($body//flt:fault)</con1:xqueryText>
+              </con3:condition>
+              <con3:actions/>
+            </con3:case>
+            <con3:default>
+              <con3:assign varName="errorCodeList">
+                <con1:id>_ActionId-2979028270343561924--b681fb8.14d80fce60a.-7d06</con1:id>
+                <con3:expr>
+                  <con1:xqueryText>concat($errorCodeList, data($fault/ctx:errorCode))</con1:xqueryText>
+                </con3:expr>
+              </con3:assign>
+            </con3:default>
+          </con3:ifThenElse>
+          <con3:assign varName="errorDVM">
+            <con1:id>_ActionId-2979028270343561924--b681fb8.14d80fce60a.-7c97</con1:id>
+            <con3:expr>
+              <con1:xqueryTransform>
+                <con1:resource ref="cs.pay/cs.pay.ebs.Accounts_1.0/xquery/ErrorDVM"/>
+              </con1:xqueryTransform>
+            </con3:expr>
+          </con3:assign>
+          <con3:ifThenElse>
+            <con1:id>_ActionId-2979028270343561924--b681fb8.14d80fce60a.-7c6e</con1:id>
+            <con3:case>
+              <con3:condition>
+                <con1:xqueryText>exists($body//flt:fault)</con1:xqueryText>
+              </con3:condition>
+              <con3:actions/>
+            </con3:case>
+            <con3:default>
+              <con3:replace varName=" body" contents-only="true">
+                <con1:id>_ActionId-2979028270343561924--b681fb8.14d80fce60a.-7c35</con1:id>
+                <con3:location>
+                  <con1:xpathText>.</con1:xpathText>
+                </con3:location>
+                <con3:expr>
+                  <con1:xqueryTransform>
+                    <con1:resource ref="core/xquery/util.flt.createFault"/>
+                    <con1:param name="inbound">
+                      <con1:path>$inbound</con1:path>
+                    </con1:param>
+                    <con1:param name="errorCodeList">
+                      <con1:path>$errorCodeList</con1:path>
+                    </con1:param>
+                    <con1:param name="operation">
+                      <con1:path>$operation</con1:path>
+                    </con1:param>
+                    <con1:param name="errorDVM">
+                      <con1:path>$errorDVM</con1:path>
+                    </con1:param>
+                    <con1:param name="faultDetail">
+                      <con1:path>$fault</con1:path>
+                    </con1:param>
+                    <con1:param name="ebmCID">
+                      <con1:path>data($ebmCID)</con1:path>
+                    </con1:param>
+                  </con1:xqueryTransform>
+                </con3:expr>
+              </con3:replace>
+              <con3:assign varName="soapFault">
+                <con1:id>_ActionId-8954999780247818025-5919050a.14d8c138294.-7d1a</con1:id>
+                <con3:expr>
+                  <con1:xqueryText><![CDATA[<soap:Fault xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+						<faultcode>pre:svcFault</faultcode>
+						<faultstring>Service Fault</faultstring>
+						<detail>
+						</detail>
+		</soap:Fault>]]></con1:xqueryText>
+                </con3:expr>
+              </con3:assign>
+              <con3:insert varName="soapFault">
+                <con1:id>_ActionId-8954999780247818025-5919050a.14d8c138294.-7cfb</con1:id>
+                <con3:location>
+                  <con1:xpathText>./*:detail</con1:xpathText>
+                </con3:location>
+                <con3:where>first-child</con3:where>
+                <con3:expr>
+                  <con1:xqueryText>$body</con1:xqueryText>
+                </con3:expr>
+              </con3:insert>
+              <con3:replace contents-only="true" varName="body">
+                <con1:id>_ActionId-8954999780247818025-5919050a.14d8c138294.-7d18</con1:id>
+                <con3:location>
+                  <con1:xpathText>.</con1:xpathText>
+                </con3:location>
+                <con3:expr>
+                  <con1:xqueryTransform>
+                    <con1:resource ref="core/xquery/util.cmn.addNameSpace"/>
+                    <con1:param name="noNamespaceXML">
+                      <con1:path>fn:concat("", $body,"")</con1:path>
+                    </con1:param>
+                    <con1:param name="namespaceURI">
+                      <con1:path>"http://www.AlMajdouie.sa/ebs/cs.pay.Accounts"</con1:path>
+                    </con1:param>
+                  </con1:xqueryTransform>
+                </con3:expr>
+              </con3:replace>
+            </con3:default>
+          </con3:ifThenElse>
+          <con2:report>
+            <con1:id>_ActionId-2979028270343561924--b681fb8.14d80fce60a.-7bfd</con1:id>
+            <con2:expr>
+              <con1:xqueryText>$body</con1:xqueryText>
+            </con2:expr>
+            <con2:labels>
+              <con2:key>FLTb</con2:key>
+              <con2:varName>requestKey</con2:varName>
+              <con2:value>
+                <con1:xpathText>.</con1:xpathText>
+              </con2:value>
+            </con2:labels>
+            <con2:labels>
+              <con2:key>op</con2:key>
+              <con2:varName>operationName</con2:varName>
+              <con2:value>
+                <con1:xpathText>.</con1:xpathText>
+              </con2:value>
+            </con2:labels>
+            <con2:labels>
+              <con2:key>ebmCID</con2:key>
+              <con2:varName>ebmCID</con2:varName>
+              <con2:value>
+                <con1:xpathText>.</con1:xpathText>
+              </con2:value>
+            </con2:labels>
+          </con2:report>
+          <con1:reply isError="true">
+            <con1:id>_ActionId-2979028270343561924--b681fb8.14d80fce60a.-7bc5</con1:id>
+          </con1:reply>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:flow>
+      <con:branch-node type="operation" name="OperationalBranch">
+        <con:context/>
+        <con:branch-table>
+          <con:branch name="uploadAccount">
+            <con:operator>equals</con:operator>
+            <con:value/>
+            <con:flow>
+              <con:pipeline-node name="uploadAccount_InitialiseVariablesPipelinePair">
+                <con:request>uploadAccount_InitialiseVariablesPipelinePair_request</con:request>
+                <con:response>uploadAccount_InitialiseVariablesPipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:pipeline-node name="uploadAccount_LoggingPipelinePair">
+                <con:request>uploadAccount_LoggingPipelinePair_request</con:request>
+                <con:response>uploadAccount_LoggingPipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:pipeline-node name="uploadAccount_ValidationPipelinePair">
+                <con:request>uploadAccount_ValidationPipelinePair_request</con:request>
+                <con:response>uploadAccount_ValidationPipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:pipeline-node name="uploadAccount_ProcessRequestResponsePipelinePair">
+                <con:request>uploadAccount_ProcessRequestResponsePipelinePair_request</con:request>
+                <con:response>uploadAccount_ProcessRequestResponsePipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:pipeline-node name="uploadAccount_AccountUploadRqRoutePipelinePair">
+                <con:request>uploadAccount_AccountUploadRqRoutePipelinePair_request</con:request>
+                <con:response>uploadAccount_AccountUploadRqRoutePipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:route-node name="uploadAccount_AccountUploadRqRouteNode">
+                <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+                <con:actions xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                  <con4:route>
+                    <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6b27</con5:id>
+                    <con4:service ref="bus.abcs/bus.abcs.SADAD_1.0" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                    <con4:operation>SADADOperation</con4:operation>
+                    <con4:outboundTransform>
+                      <con5:report xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6b26</con6:id>
+                        <con5:expr>
+                          <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body</con6:xqueryText>
+                        </con5:expr>
+                        <con5:labels>
+                          <con5:key>SCRQ</con5:key>
+                          <con5:varName>requestKey</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                        <con5:labels>
+                          <con5:key>op</con5:key>
+                          <con5:varName>operationName</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                        <con5:labels>
+                          <con5:key>ebmCID</con5:key>
+                          <con5:varName>ebmCID</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                      </con5:report>
+                    </con4:outboundTransform>
+                    <con4:responseTransform>
+                      <con5:report xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6b25</con6:id>
+                        <con5:expr>
+                          <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body</con6:xqueryText>
+                        </con5:expr>
+                        <con5:labels>
+                          <con5:key>SCRS</con5:key>
+                          <con5:varName>requestKey</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                        <con5:labels>
+                          <con5:key>op</con5:key>
+                          <con5:varName>operationName</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                        <con5:labels>
+                          <con5:key>ebmCID</con5:key>
+                          <con5:varName>ebmCID</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                      </con5:report>
+                    </con4:responseTransform>
+                  </con4:route>
+                </con:actions>
+              </con:route-node>
+            </con:flow>
+          </con:branch>
+          <con:branch name="confirmAccount">
+            <con:operator>equals</con:operator>
+            <con:value/>
+            <con:flow>
+              <con:pipeline-node name="confirmAccount_InitialiseVariablesPipelinePair">
+                <con:request>confirmAccount_InitialiseVariablesPipelinePair_request</con:request>
+                <con:response>confirmAccount_InitialiseVariablesPipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:pipeline-node name="confirmAccount_LoggingPipelinePair">
+                <con:request>confirmAccount_LoggingPipelinePair_request</con:request>
+                <con:response>confirmAccount_LoggingPipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:pipeline-node name="confirmAccount_ValidationPipelinePair">
+                <con:request>confirmAccount_ValidationPipelinePair_request</con:request>
+                <con:response>confirmAccount_ValidationPipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:pipeline-node name="confirmAccount_ProcessRequestResponsePipelinePair">
+                <con:request>confirmAccount_ProcessRequestResponsePipelinePair_request</con:request>
+                <con:response>confirmAccount_ProcessRequestResponsePipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:pipeline-node name="confirmAccount_AccountConfirmRqRoutePipelinePair">
+                <con:request>confirmAccount_AccountConfirmRqRoutePipelinePair_request</con:request>
+                <con:response>confirmAccount_AccountConfirmRqRoutePipelinePair_response</con:response>
+              </con:pipeline-node>
+              <con:route-node name="confirmAccount_AccountConfirmRqRouteNode">
+                <con:context xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config"/>
+                <con:actions xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                  <con4:route>
+                    <con5:id xmlns:con5="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6ab2</con5:id>
+                    <con4:service ref="bus.abcs/bus.abcs.confirmAccounts_1.0" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                    <con4:operation>confirmAccount</con4:operation>
+                    <con4:outboundTransform>
+                      <con5:report xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6ab1</con6:id>
+                        <con5:expr>
+                          <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body</con6:xqueryText>
+                        </con5:expr>
+                        <con5:labels>
+                          <con5:key>SCRQ</con5:key>
+                          <con5:varName>requestKey</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                        <con5:labels>
+                          <con5:key>op</con5:key>
+                          <con5:varName>operationName</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                        <con5:labels>
+                          <con5:key>ebmCID</con5:key>
+                          <con5:varName>ebmCID</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                      </con5:report>
+                    </con4:outboundTransform>
+                    <con4:responseTransform>
+                      <con5:report xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+                        <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-2997103999380605477-22b380f5.14d045874db.-6ab0</con6:id>
+                        <con5:expr>
+                          <con6:xqueryText xmlns:con6="http://www.bea.com/wli/sb/stages/config">$body</con6:xqueryText>
+                        </con5:expr>
+                        <con5:labels>
+                          <con5:key>SCRS</con5:key>
+                          <con5:varName>requestKey</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                        <con5:labels>
+                          <con5:key>op</con5:key>
+                          <con5:varName>operationName</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                        <con5:labels>
+                          <con5:key>ebmCID</con5:key>
+                          <con5:varName>ebmCID</con5:varName>
+                          <con5:value>
+                            <con6:xpathText xmlns:con6="http://www.bea.com/wli/sb/stages/config">.</con6:xpathText>
+                          </con5:value>
+                        </con5:labels>
+                      </con5:report>
+                    </con4:responseTransform>
+                  </con4:route>
+                </con:actions>
+              </con:route-node>
+            </con:flow>
+          </con:branch>
+          <con:default-branch>
+            <con:flow>
+              <con:pipeline-node name="default_UnsupportedOperationPipelinePair">
+                <con:request>default_UnsupportedOperationPipelinePair_request</con:request>
+                <con:response>default_UnsupportedOperationPipelinePair_response</con:response>
+              </con:pipeline-node>
+            </con:flow>
+          </con:default-branch>
+        </con:branch-table>
+      </con:branch-node>
+    </con:flow>
+  </ser:router>
+</xml-fragment>

@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/getAccountUpload" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/getAccountUpload" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="XxamgRySadadAcctTCollection" type="XxamgRySadadAcctTCollection"/>
+   <xs:complexType name="XxamgRySadadAcctTCollection">
+      <xs:sequence>
+         <xs:element name="XxamgRySadadAcctT" type="XxamgRySadadAcctT" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="XxamgRySadadAcctT">
+      <xs:sequence>
+         <xs:element name="accReqId" nillable="true">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="50"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="accountNumer" minOccurs="0" nillable="true">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="200"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="officialIdType" minOccurs="0" nillable="true">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="200"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="custOfficialId" minOccurs="0" nillable="true">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="200"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="reqDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="statusCode" minOccurs="0" nillable="true">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="200"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="batchErrItems" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="batchTotItems" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="batchPassItems" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="creationDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="createdBy" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="lastUpdateDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="lastUpdatedBy" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="lastUpdateLogin" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="requestId" type="xs:decimal" minOccurs="0" nillable="true"/>
+         <xs:element name="orgId" type="xs:decimal" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="getAccountUploadSelect_reqid_statusCodeInputParameters" type="getAccountUploadSelect_reqid_statusCode"/>
+   <xs:complexType name="getAccountUploadSelect_reqid_statusCode">
+      <xs:sequence>
+         <xs:element name="reqid" type="xs:string" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="statusCode" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

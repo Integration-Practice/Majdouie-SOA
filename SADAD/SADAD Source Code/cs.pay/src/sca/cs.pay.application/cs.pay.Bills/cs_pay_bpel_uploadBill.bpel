@@ -1,0 +1,787 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed May 20 14:40:13 AST 2015
+  Author:  E003504
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="cs_pay_bpel_uploadBill"
+         targetNamespace="http://xmlns.oracle.com/cs_pay_application/cs_pay_Bills/cs_pay_bpel_uploadBill"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:client="http://xmlns.oracle.com/cs_pay_application/cs_pay_Bills/cs_pay_bpel_uploadBill"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/apps/cs.pay.application/cs.pay.Bills/cs_pay_cvs_uploadBill"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.Bills/getBillInfonProc"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.Bills/getBillInfo"
+         xmlns:ns4="http://www.AlMajdouie.sa/ebs/cs.pay.Bills"
+         xmlns:ns5="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.Bills/getBillResponseProc"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:aia="http://www.oracle.com/XSL/Transform/java/oracle.apps.aia.core.xpath.AIAFunctions"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/getBillInfo"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns8="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+         xmlns:ns7="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+         xmlns:ns9="http://xmlns.oracle.com/xdb/APPS/cs.pay.cvs.uploadBill"
+         xmlns:ns10="http://xmlns.oracle.com/pcbpel/adapter/db/sp/getBillResponsePROC"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:ns11="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.Bills/getBillResponse"
+         xmlns:ns12="http://xmlns.oracle.com/pcbpel/adapter/db/sp/getBillResponse"
+         xmlns:ns13="http://xmlns.alm.com/CommonService/FaultHandler/FaultHandler"
+         xmlns:ns14="http://www.AlMajdouie.sa/ebo/util.flt.Fault">
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="cs_pay_bpel_uploadbill_client"
+                 partnerLinkType="ns1:DEQUEUE_plt" myRole="DEQUEUE_role"/>
+    <partnerLink name="getBillInfo" partnerLinkType="ns3:getBillInfo_plt"
+                 partnerRole="getBillInfo_role"/>
+    <partnerLink name="cs.pay.ebs.Bills_1.0"
+                 partnerLinkType="ns4:cs.pay.ebs.Bills_1.0"
+                 partnerRole="cs.pay.ebs.Bills"/>
+    <partnerLink name="getBillResponse"
+                 partnerLinkType="ns11:getBillResponse_plt"
+                 partnerRole="getBillResponse_role"/>
+    <partnerLink name="FaultHandler" partnerLinkType="ns13:FaultHandler"
+                 partnerRole="FaultHandlerProvider"/>
+  </partnerLinks>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="ns1:WF_EVENT_T_msg"/>
+    <variable name="getBillInfo_InputVariable"
+              messageType="ns3:getBillInfoInput_msg"/>
+    <variable name="getBillInfo_OutputVariable"
+              messageType="ns3:getBillInfoOutputCollection_msg"/>
+    <variable name="uploadBill_InputVariable" messageType="ns4:uploadBill"/>
+    <variable name="uploadBill_OutputVariable"
+              messageType="ns4:uploadBillResponse"/>
+    <variable name="loadBill_InputVariable" messageType="ns4:loadBill"/>
+    <variable name="loadBill_OutputVariable"
+              messageType="ns4:loadBillResponse"/>
+    <variable name="getBillResponse_InputVariable"
+              messageType="ns11:args_in_msg"/>
+    <variable name="getBillResponse_OutputVariable"
+              messageType="ns11:args_out_msg"/>
+    <variable name="faultRequest_InputVariable"
+              messageType="ns13:FaultHandlerRequestMessage"/>
+  </variables>
+  <faultHandlers>
+    <catch faultVariable="svcFault" faultElement="ns14:fault"><sequence name="Sequence7"><assign name="Assign_Fault"
+                                              xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+          <copy>
+            <from>$svcFault/ns7:ebmCID</from>
+            <to>$faultRequest_InputVariable.payload/ns13:BusinessProcessId</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns14:errorList/ns14:error/ns14:errorCode</from>
+            <to>$faultRequest_InputVariable.payload/ns13:ErrorText</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns14:errorList/ns14:error/ns14:description</from>
+            <to>$faultRequest_InputVariable.payload/ns13:Error_Message</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns14:timestamp</from>
+            <to>$faultRequest_InputVariable.payload/ns13:ErrorDateTime</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns14:timestamp</from>
+            <to>$faultRequest_InputVariable.payload/ns13:DateCreated</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns14:timestamp</from>
+            <to>$faultRequest_InputVariable.payload/ns13:LastUpdateDate</to>
+          </copy>
+          <copy>
+            <from>concat(ora:getCompositeName(), ':', ora:getRevision())</from>
+            <to>$faultRequest_InputVariable.payload/ns13:BusinessProcessName</to>
+          </copy>
+          <copy>
+            <from>'SADAD'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:SourceSystemName</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeInstanceId()</from>
+            <to>$faultRequest_InputVariable.payload/ns13:CompositeInstanceID</to>
+          </copy>
+          <copy>
+            <from>'Execution Failed'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:ProcessStatus</to>
+          </copy>
+          <copy>
+            <from>'Common for all Domains'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:BusinessProcessDomain</to>
+          </copy>
+          <copy>
+            <from>'OLFM'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:TargetSystemName</to>
+          </copy>
+          <copy>
+            <from>1</from>
+            <to>$faultRequest_InputVariable.payload/ns13:ErrorSeverity</to>
+          </copy>
+          <copy>
+            <from>'uploadBill'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:MessageOperation</to>
+          </copy>
+        </assign><invoke name="Invoke_FaultHandler" partnerLink="FaultHandler"
+                    portType="ns13:FaultHandler" operation="faultRequest"
+                    inputVariable="faultRequest_InputVariable"
+                    xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+                    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+                    bpelx:invokeAsDetail="no"/></sequence></catch>
+    <catchAll>
+      <sequence>
+        <assign name="Assign_Fault"
+                xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+          <copy>
+            <from>concat(ora:getCompositeName(), ':', ora:getRevision())</from>
+            <to>$faultRequest_InputVariable.payload/ns13:BusinessProcessName</to>
+          </copy>
+          <copy>
+            <from>'SADAD'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:SourceSystemName</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeInstanceId()</from>
+            <to>$faultRequest_InputVariable.payload/ns13:CompositeInstanceID</to>
+          </copy>
+          <copy>
+            <from>'Execution Failed'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:ProcessStatus</to>
+          </copy>
+          <copy>
+            <from>'Common for all Domains'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:BusinessProcessDomain</to>
+          </copy>
+          <copy>
+            <from>'OLFM'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:TargetSystemName</to>
+          </copy>
+          <copy>
+            <from>1</from>
+            <to>$faultRequest_InputVariable.payload/ns13:ErrorSeverity</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$faultRequest_InputVariable.payload/ns13:Error_Message</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$faultRequest_InputVariable.payload/ns13:ErrorText</to>
+          </copy>
+          <copy>
+            <from>'uploadBill'</from>
+            <to>$faultRequest_InputVariable.payload/ns13:MessageOperation</to>
+          </copy>
+        </assign>
+        <invoke name="Invoke_FaultHandler" partnerLink="FaultHandler"
+                portType="ns13:FaultHandler" operation="faultRequest"
+                inputVariable="faultRequest_InputVariable"
+                xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+                xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+                bpelx:invokeAsDetail="no"/>
+      </sequence>
+    </catchAll>
+  </faultHandlers>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+    <!-- Receive input from requestor. (Note: This maps to operation defined in cs_pay_bpel_uploadBill.wsdl) -->
+    <receive name="receiveInput" partnerLink="cs_pay_bpel_uploadbill_client"
+             portType="ns1:DEQUEUE_ptt" operation="DEQUEUE"
+             variable="inputVariable" createInstance="yes"/>
+    <scope name="Scope1">
+      <bpelx:annotation>
+        <bpelx:general>
+          <bpelx:property name="userLabel">
+            <![CDATA[Scope_BillsInfo]]>
+          </bpelx:property>
+        </bpelx:general>
+      </bpelx:annotation>
+      <sequence name="Sequence1">
+        <assign name="Set_getBillInfo_inputVariable">
+          <bpelx:annotation>
+            <bpelx:pattern patternName="bpelx:transformation"/>
+          </bpelx:annotation>
+          <copy>
+            <from>ora:doXSLTransformForDoc("xsl/Transformation_BE_getBillInfoRq.xsl", $inputVariable.WF_EVENT_T)</from>
+            <to variable="getBillInfo_InputVariable"
+                part="getBillInfoInput_msg"/>
+          </copy>
+        </assign>
+        <invoke name="Invoke_getBillInfo" partnerLink="getBillInfo"
+                portType="ns3:getBillInfo_ptt" operation="getBillInfo"
+                inputVariable="getBillInfo_InputVariable"
+                outputVariable="getBillInfo_OutputVariable"
+                bpelx:invokeAsDetail="no"/>
+      </sequence>
+    </scope>
+    <scope name="Scope2">
+      <bpelx:annotation>
+        <bpelx:general>
+          <bpelx:property name="userLabel">
+            <![CDATA[Scope_uploadBills_loadBills]]>
+          </bpelx:property>
+        </bpelx:general>
+      </bpelx:annotation>
+      <if name="loadBillsOrUploadBills">
+        <documentation>
+          <![CDATA[uploadBills]]>
+        </documentation>
+        <condition>count($getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput)&gt;1</condition>
+        <sequence name="Sequence2">
+          <assign name="Assign_inputVariable">
+            <bpelx:annotation>
+              <bpelx:pattern patternName="bpelx:transformation"/>
+            </bpelx:annotation>
+            <copy>
+              <from>ora:doXSLTransformForDoc("xsl/Transformation_to_uploadBill.xsl", $inputVariable.WF_EVENT_T, "getBillInfo_InputVariable.getBillInfoInput_msg", $getBillInfo_InputVariable.getBillInfoInput_msg, "getBillInfo_OutputVariable.getBillInfoOutputCollection", $getBillInfo_OutputVariable.getBillInfoOutputCollection)</from>
+              <to variable="uploadBill_InputVariable" part="part"/>
+            </copy>
+          </assign>
+          <invoke name="Invoke_uploadBill" partnerLink="cs.pay.ebs.Bills_1.0"
+                  portType="ns4:cs.pay.ebs.Bills" operation="uploadBill"
+                  inputVariable="uploadBill_InputVariable"
+                  outputVariable="uploadBill_OutputVariable"
+                  bpelx:invokeAsDetail="no"/>
+        </sequence>
+        <else>
+          <documentation>
+            <![CDATA[loadBill]]>
+          </documentation>
+          <sequence name="Sequence3">
+            <assign name="Assign_inputVariable">
+              <copy>
+                <from>$getBillInfo_InputVariable.getBillInfoInput_msg/ns6:reqId</from>
+                <to>$loadBill_InputVariable.part/ns4:header/ns7:rquid</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_REQ_ID</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:requestInformation/ns8:requestUID</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:ACCOUNT_NUMBER</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:billingAccount</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:OFFICIAL_ID_TYPE</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:officailIdType</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:CUST_OFFICIAL_ID</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:officialId</to>
+              </copy>
+              <copy>
+                <from>'0'</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:requestInformation/ns8:statusCode</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:DUE_DATE</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:dueDate</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_CYCLE</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:billCycle</to>
+              </copy>
+              <copy>
+                <from>dvm:lookupValue("billTypeMapping.dvm","OLFMBillType",$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_TYPE,"SOABillType","UndefinedType")</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:paymentRanges/ns4:billType</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:INVOICE_NUMBER</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:billNumber</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_DUES</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:dueAmount</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_DATE</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:openDate</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput/ns6:BILL_DUES</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:paymentRanges/ns4:range/ns4:lower</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput/ns6:BILL_DUES</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:paymentRanges/ns4:range/ns4:upper</to>
+              </copy>
+              <copy>
+                <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:EXPIRY_DATE</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:expiryDate</to>
+              </copy>
+              <copy>
+                <from>''</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:requestInformation/ns8:messageCode</to>
+              </copy>
+              <copy>
+                <from>xp20:current-dateTime()</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:requestInformation/ns8:timestamp</to>
+              </copy>
+              <copy>
+                <from>''</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:bills/ns4:billInfo/ns4:serviceType</to>
+              </copy>
+              <copy>
+                <from>substring($inputVariable.WF_EVENT_T/SEND_DATE,1,19)</from>
+                <to>$loadBill_InputVariable.part/ns4:body/ns4:requestInformation/ns8:clientDate</to>
+              </copy>
+            </assign>
+            <invoke name="Invoke_loadBill" partnerLink="cs.pay.ebs.Bills_1.0"
+                    portType="ns4:cs.pay.ebs.Bills" operation="loadBill"
+                    inputVariable="loadBill_InputVariable"
+                    outputVariable="loadBill_OutputVariable"
+                    bpelx:invokeAsDetail="no"/>
+          </sequence>
+        </else>
+      </if>
+    </scope>
+    <scope name="Scope_setResponse" exitOnStandardFault="no">
+      <variables>
+        <variable name="statusCode" type="xsd:string"/>
+      </variables>
+      <sequence>
+        <if name="loadBillsOrUploadBills">
+          <documentation>
+            <![CDATA[uploadBills]]>
+          </documentation>
+          <condition>count($getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput)&gt;1</condition>
+          <sequence>
+            <if name="set_statusCode">
+              <documentation>
+                <![CDATA[no_error]]>
+              </documentation>
+              <condition>$uploadBill_OutputVariable.part/ns8:body/ns8:statusCode = '0'</condition>
+              <assign name="Assign_statusCode">
+                <copy>
+                  <from>"CONFIRMED"</from>
+                  <to>$statusCode</to>
+                </copy>
+              </assign>
+              <else>
+                <documentation>
+                  <![CDATA[error]]>
+                </documentation>
+                <assign name="Assign_statusCode"
+                        xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                  <copy>
+                    <from>"ERROR"</from>
+                    <to>$statusCode</to>
+                  </copy>
+                </assign>
+              </else>
+            </if>
+            <forEach parallel="no" counterName="index" name="ForEach_Bills">
+              <startCounterValue>1</startCounterValue>
+              <finalCounterValue>count($getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput)</finalCounterValue>
+              <scope name="Scope3">
+                <sequence name="Sequence6">
+                  <assign name="Assign_input">
+                    <copy>
+                      <from>$statusCode</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_STATUS_CODE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:BILL_REQ_ID</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_REQ_ID</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:ACCOUNT_NUMBER</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_ACCOUNT_NUMBER</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:OFFICIAL_ID_TYPE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_OFFICIAL_ID_TYPE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:CUST_OFFICIAL_ID</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_CUST_OFFICIAL_ID</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:DUE_DATE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_DUE_DATE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:BILL_CYCLE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_CYCLE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:BILL_TYPE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_TYPE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:INVOICE_NUMBER</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_INVOICE_NUMBER</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:BILL_DUES</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_DUES</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:BILL_ORIGINAL</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_ORIGINAL</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:BILL_PAID_AMT</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_PAID_AMT</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:BILL_DATE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_DATE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[$index]/ns6:EXPIRY_DATE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_EXPIRY_DATE</to>
+                    </copy>
+                  </assign>
+                  <invoke name="Invoke_getBillResponsePROC"
+                          inputVariable="getBillResponse_InputVariable"
+                          outputVariable="getBillResponse_OutputVariable"
+                          xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+                          xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+                          partnerLink="getBillResponse"
+                          portType="ns11:getBillResponse_ptt"
+                          operation="getBillResponse"
+                          bpelx:invokeAsDetail="no"/><if name="checkOLFMStatusCode"
+                                                         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+      <documentation>
+         
+      <![CDATA[failure]]></documentation>
+      <condition>$getBillResponse_OutputVariable.OutputParameters/ns12:X_STATUS_CODE != '0000'</condition>
+      <sequence name="Sequence4">
+         <assign name="setOLFMFault">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+         <copy>
+               <from>concat(ora:getCompositeName(), ':', ora:getRevision())</from>
+               <to>$faultRequest_InputVariable.payload/ns13:BusinessProcessName</to>
+            </copy><copy>
+               <from>'OLFM'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:SourceSystemName</to>
+            </copy><copy>
+               <from>ora:getCompositeInstanceId()</from>
+               <to>$faultRequest_InputVariable.payload/ns13:CompositeInstanceID</to>
+            </copy><copy>
+               <from>'Execution Failed'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:ProcessStatus</to>
+            </copy><copy>
+               <from>'Common for all Domains'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:BusinessProcessDomain</to>
+            </copy><copy>
+               <from>'SADAD'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:TargetSystemName</to>
+            </copy><copy>
+               <from>xp20:current-dateTime()</from>
+               <to>$faultRequest_InputVariable.payload/ns13:DateCreated</to>
+            </copy><copy>
+               <from>xp20:current-dateTime()</from>
+               <to>$faultRequest_InputVariable.payload/ns13:LastUpdateDate</to>
+            </copy><copy>
+               <from>$getBillResponse_OutputVariable.OutputParameters/ns12:X_STATUS_CODE</from>
+               <to>$faultRequest_InputVariable.payload/ns13:FaultName</to>
+            </copy><copy>
+               <from>$getBillResponse_OutputVariable.OutputParameters/ns12:X_STATUS_CODE</from>
+               <to>$faultRequest_InputVariable.payload/ns13:ErrorText</to>
+            </copy><copy>
+               <from>1</from>
+               <to>$faultRequest_InputVariable.payload/ns13:ErrorSeverity</to>
+            </copy><copy>
+               <from>xp20:current-dateTime()</from>
+               <to>$faultRequest_InputVariable.payload/ns13:ErrorDateTime</to>
+            </copy><copy>
+               <from>'uploadBill'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:MessageOperation</to>
+            </copy><copy>
+               <from>dvm:lookupValue("Error.dvm","errorCode",$getBillResponse_OutputVariable.OutputParameters/ns12:X_STATUS_CODE,"OLFMError","unexpected error")</from>
+               <to>$faultRequest_InputVariable.payload/ns13:Error_Message</to>
+            </copy></assign>
+         <invoke name="Invoke_FaultHandler" partnerLink="FaultHandler"
+                 portType="ns13:FaultHandler" operation="faultRequest"
+                 bpelx:invokeAsDetail="no"
+                 inputVariable="faultRequest_InputVariable"
+                 xmlns:bpelx="http://schemas.oracle.com/bpel/extension"/>
+      </sequence>
+      <else>
+         <documentation>
+            <![CDATA[success]]>
+         </documentation>
+         <empty name="DoNothing"/>
+      </else>
+   </if></sequence>
+              </scope>
+            </forEach>
+          </sequence>
+          <else>
+            <documentation>
+              <![CDATA[loadBills]]>
+            </documentation>
+            <sequence>
+              <if name="If_error_From_loadBillResponse">
+                <documentation>
+                  <![CDATA[error]]>
+                </documentation>
+                <condition>count($loadBill_OutputVariable.part/ns4:body/ns4:bills/ns4:billInformationError)&gt;1</condition>
+                <assign name="Assign_input"
+                        xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_REQ_ID</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_REQ_ID</to>
+                  </copy>
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:OFFICIAL_ID_TYPE</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_OFFICIAL_ID_TYPE</to>
+                  </copy>
+                  <copy>
+                    <from>$loadBill_OutputVariable.part/ns4:body/ns4:bills/ns4:billInformationError[1]/ns4:billingAccount</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_ACCOUNT_NUMBER</to>
+                  </copy>
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:CUST_OFFICIAL_ID</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_CUST_OFFICIAL_ID</to>
+                  </copy>
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:DUE_DATE</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_DUE_DATE</to>
+                  </copy>
+                  <copy>
+                    <from>"ERROR"</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_STATUS_CODE</to>
+                  </copy>
+                  <copy>
+                    <from>$loadBill_OutputVariable.part/ns4:body/ns4:bills/ns4:billInformationError[1]/ns4:error/ns4:errorCode</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_ERROR_CODE</to>
+                  </copy>
+                  <copy>
+                    <from>$loadBill_OutputVariable.part/ns4:body/ns4:bills/ns4:billInformationError[1]/ns4:error/ns4:errorMessage</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_ERROR_MESSAGE</to>
+                  </copy>
+                  <copy>
+                    <from>dvm:lookupValue("billTypeMapping.dvm","OLFMBillType",$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_TYPE,"SOABillType","UndefinedType")</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_TYPE</to>
+                  </copy>
+                  <copy>
+                    <from>$loadBill_OutputVariable.part/ns4:body/ns4:bills/ns4:billInformationError[1]/ns4:billCycle</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_CYCLE</to>
+                  </copy>
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:INVOICE_NUMBER</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_INVOICE_NUMBER</to>
+                  </copy>
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_DUES</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_DUES</to>
+                  </copy>
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_ORIGINAL</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_ORIGINAL</to>
+                  </copy>
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_PAID_AMT</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_PAID_AMT</to>
+                  </copy>
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_DATE</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_DATE</to>
+                  </copy>
+                  <copy>
+                    <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:EXPIRY_DATE</from>
+                    <to>$getBillResponse_InputVariable.InputParameters/ns12:P_EXPIRY_DATE</to>
+                  </copy>
+                </assign>
+                <else>
+                  <assign name="Assign_input">
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_REQ_ID</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_REQ_ID</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:ACCOUNT_NUMBER</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_ACCOUNT_NUMBER</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:OFFICIAL_ID_TYPE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_OFFICIAL_ID_TYPE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:CUST_OFFICIAL_ID</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_CUST_OFFICIAL_ID</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:DUE_DATE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_DUE_DATE</to>
+                    </copy>
+                    <copy>
+                      <from>"ACTIVE"</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_STATUS_CODE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_CYCLE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_CYCLE</to>
+                    </copy>
+                    <copy>
+                      <from>dvm:lookupValue("billTypeMapping.dvm","OLFMBillType",$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_TYPE,"SOABillType","UndefinedType")</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_TYPE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:INVOICE_NUMBER</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_INVOICE_NUMBER</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_DUES</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_DUES</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_ORIGINAL</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_ORIGINAL</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_PAID_AMT</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_PAID_AMT</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:BILL_DATE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_BILL_DATE</to>
+                    </copy>
+                    <copy>
+                      <from>$getBillInfo_OutputVariable.getBillInfoOutputCollection/ns6:getBillInfoOutput[1]/ns6:EXPIRY_DATE</from>
+                      <to>$getBillResponse_InputVariable.InputParameters/ns12:P_EXPIRY_DATE</to>
+                    </copy>
+                  </assign>
+                </else>
+              </if>
+              <invoke name="Invoke_getBillResponsePROC"
+                      inputVariable="getBillResponse_InputVariable"
+                      outputVariable="getBillResponse_OutputVariable"
+                      partnerLink="getBillResponse"
+                      portType="ns11:getBillResponse_ptt"
+                      operation="getBillResponse" bpelx:invokeAsDetail="no"/><if name="checkOLFMStatusCode"
+                                                                                 xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+      <documentation>
+         
+      <![CDATA[failure]]></documentation>
+      <condition>$getBillResponse_OutputVariable.OutputParameters/ns12:X_STATUS_CODE != '0000'</condition>
+      <sequence name="Sequence4">
+         <assign name="setOLFMFault">
+            <copy>
+               <from>concat(ora:getCompositeName(), ':', ora:getRevision())</from>
+               <to>$faultRequest_InputVariable.payload/ns13:BusinessProcessName</to>
+            </copy>
+            <copy>
+               <from>'OLFM'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:SourceSystemName</to>
+            </copy>
+            <copy>
+               <from>ora:getCompositeInstanceId()</from>
+               <to>$faultRequest_InputVariable.payload/ns13:CompositeInstanceID</to>
+            </copy>
+            <copy>
+               <from>'Execution Failed'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:ProcessStatus</to>
+            </copy>
+            <copy>
+               <from>'Common for all Domains'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:BusinessProcessDomain</to>
+            </copy>
+            <copy>
+               <from>'SADAD'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:TargetSystemName</to>
+            </copy>
+            <copy>
+               <from>xp20:current-dateTime()</from>
+               <to>$faultRequest_InputVariable.payload/ns13:DateCreated</to>
+            </copy>
+            <copy>
+               <from>xp20:current-dateTime()</from>
+               <to>$faultRequest_InputVariable.payload/ns13:LastUpdateDate</to>
+            </copy>
+            <copy>
+               <from>$getBillResponse_OutputVariable.OutputParameters/ns12:X_STATUS_CODE</from>
+               <to>$faultRequest_InputVariable.payload/ns13:FaultName</to>
+            </copy>
+            <copy>
+               <from>$getBillResponse_OutputVariable.OutputParameters/ns12:X_STATUS_CODE</from>
+               <to>$faultRequest_InputVariable.payload/ns13:ErrorText</to>
+            </copy>
+            <copy>
+               <from>1</from>
+               <to>$faultRequest_InputVariable.payload/ns13:ErrorSeverity</to>
+            </copy>
+            <copy>
+               <from>xp20:current-dateTime()</from>
+               <to>$faultRequest_InputVariable.payload/ns13:ErrorDateTime</to>
+            </copy>
+            <copy>
+               <from>'uploadBill'</from>
+               <to>$faultRequest_InputVariable.payload/ns13:MessageOperation</to>
+            </copy>
+            <copy>
+               <from>dvm:lookupValue("Error.dvm","errorCode",$getBillResponse_OutputVariable.OutputParameters/ns12:X_STATUS_CODE,"OLFMError","unexpected error")</from>
+               <to>$faultRequest_InputVariable.payload/ns13:Error_Message</to>
+            </copy>
+         </assign>
+         <invoke name="Invoke_FaultHandler" partnerLink="FaultHandler"
+                 portType="ns13:FaultHandler" operation="faultRequest"
+                 bpelx:invokeAsDetail="no"
+                 inputVariable="faultRequest_InputVariable"
+                 xmlns:bpelx="http://schemas.oracle.com/bpel/extension"/>
+      </sequence>
+      <else>
+         <documentation>
+            <![CDATA[success]]>
+         </documentation>
+         <empty name="DoNothing"/>
+      </else>
+   </if></sequence>
+          </else>
+        </if>
+      </sequence>
+    </scope>
+  </sequence>
+</process>

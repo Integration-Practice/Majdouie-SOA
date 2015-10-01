@@ -1,0 +1,14 @@
+xquery version "1.0" encoding "Cp1252";
+(:: pragma  parameter="$anyType1" type="xs:anyType" ::)
+(:: pragma  type="xs:anyType" ::)
+
+declare namespace xf = "http://tempuri.org/core/xquery/util.cmn.faultHdr/";
+
+declare function xf:util($anyType1 as element(*))
+    as element(*) {
+        xs:anyType
+};
+
+declare variable $anyType1 as element(*) external;
+
+xf:util($anyType1)

@@ -1,0 +1,14 @@
+<adapter-config name="getAccountResponse" adapter="Database Adapter" wsdlLocation="getAccountResponse.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/DEVAMG" UIConnectionName="DEVAMG" adapterRef=""/>
+  <endpoint-interaction portType="getAccountResponse_ptt" operation="getAccountResponse">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="APPS"/>
+      <property name="PackageName" value="XXAMG_RY_SADAD_W_PKG"/>
+      <property name="ProcedureName" value="GET_ACCOUNT_RESPONSE"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <output/>
+  </endpoint-interaction>
+
+</adapter-config>

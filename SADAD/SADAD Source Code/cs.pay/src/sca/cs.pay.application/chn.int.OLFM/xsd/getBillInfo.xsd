@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/getBillInfo" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/getBillInfo" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="getBillInfoInput" type="getBillInfoInput"/>
+   <xs:complexType name="getBillInfoInput">
+      <xs:sequence>
+         <xs:element name="reqId" type="xs:string" nillable="true"/>
+         <xs:element name="statusCode" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="getBillInfoOutputCollection" type="getBillInfoOutputCollection"/>
+   <xs:complexType name="getBillInfoOutputCollection">
+      <xs:sequence>
+         <xs:element name="getBillInfoOutput" type="getBillInfoOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="getBillInfoOutput">
+      <xs:sequence>
+         <xs:element name="BILL_REQ_ID" type="xs:string" nillable="true"/>
+         <xs:element name="ACCOUNT_NUMBER" type="xs:string" nillable="true"/>
+         <xs:element name="OFFICIAL_ID_TYPE" type="xs:string" nillable="true"/>
+         <xs:element name="CUST_OFFICIAL_ID" type="xs:string" nillable="true"/>
+         <xs:element name="STATUS_CODE" type="xs:string" nillable="true"/>
+         <xs:element name="BATCH_ERR_ITEMS" type="xs:decimal" nillable="true"/>
+         <xs:element name="BATCH_TOT_ITEMS" type="xs:decimal" nillable="true"/>
+         <xs:element name="BATCH_PASS_ITEMS" type="xs:decimal" nillable="true"/>
+         <xs:element name="DUE_DATE" type="xs:dateTime" nillable="true"/>
+         <xs:element name="BILL_CYCLE" type="xs:string" nillable="true"/>
+         <xs:element name="BILL_TYPE" type="xs:string" nillable="true"/>
+         <xs:element name="INVOICE_NUMBER" type="xs:string" nillable="true"/>
+         <xs:element name="BILL_DUES" type="xs:decimal" nillable="true"/>
+         <xs:element name="BILL_ORIGINAL" type="xs:decimal" nillable="true"/>
+         <xs:element name="BILL_PAID_AMT" type="xs:decimal" nillable="true"/>
+         <xs:element name="BILL_DATE" type="xs:dateTime" nillable="true"/>
+         <xs:element name="INVOICE_SOURCE" type="xs:string" nillable="true"/>
+         <xs:element name="SERVICE_REQUEST_ID" type="xs:string" nillable="true"/>
+         <xs:element name="EXPIRY_DATE" type="xs:dateTime" nillable="true"/>
+         <xs:element name="CREATION_DATE" type="xs:dateTime" nillable="true"/>
+         <xs:element name="CREATED_BY" type="xs:decimal" nillable="true"/>
+         <xs:element name="LAST_UPDATE_DATE" type="xs:dateTime" nillable="true"/>
+         <xs:element name="LAST_UPDATED_BY" type="xs:decimal" nillable="true"/>
+         <xs:element name="LAST_UPDATE_LOGIN" type="xs:decimal" nillable="true"/>
+         <xs:element name="REQUEST_ID" type="xs:decimal" nillable="true"/>
+         <xs:element name="ORG_ID" type="xs:decimal" nillable="true"/>
+         <xs:element name="AMOUNT_HI" type="xs:decimal" nillable="true"/>
+         <xs:element name="AMOUNT_LOW" type="xs:decimal" nillable="true"/>
+         <xs:element name="PARTIAL_PAY_ALLOWED" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="cs_pay_func_uploadBill"
+             targetNamespace="http://xmlns.oracle.com/cs_pay_application/cs_pay_Accounts/cs_pay_func_uploadBill"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:client="http://xmlns.oracle.com/cs_pay_application/cs_pay_Accounts/cs_pay_func_uploadBill"
+             xmlns:ns1="http://xmlns.oracle.com/xdb/APPS/cs.pay.abcs.Accounts"
+             xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+
+	<wsdl:import namespace="http://xmlns.oracle.com/xdb/APPS/cs.pay.abcs.Accounts" location="xsd/APPS_WF_EVENT_T_cs.pay.abcs.Accounts.xsd" />
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	TYPE DEFINITION - List of services participating in this BPEL process
+	The default output of the BPEL designer uses strings as input and 
+	output to the BPEL Process. But you can define or import any XML 
+	Schema type and use them as part of the message types.
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->   
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	MESSAGE TYPE DEFINITION - Definition of the message types used as 
+	part of the port type defintions
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->      
+	<wsdl:message name="cs_pay_func_uploadBillRequestMessage">
+		<wsdl:part name="payload" element="ns1:WF_EVENT_T" />
+	</wsdl:message>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	PORT TYPE DEFINITION - A port type groups a set of operations into
+	a logical service unit.
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- portType implemented by the cs_pay_func_uploadBill BPEL process -->
+	<wsdl:portType name="cs_pay_func_uploadBill">
+		<wsdl:operation name="process">
+			<wsdl:input  message="client:cs_pay_func_uploadBillRequestMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	PARTNER LINK TYPE DEFINITION
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --> 
+	<plnk:partnerLinkType name="cs_pay_func_uploadBill">
+		<plnk:role name="cs_pay_func_uploadBillProvider" portType="client:cs_pay_func_uploadBill"/>
+	</plnk:partnerLinkType>
+</wsdl:definitions>

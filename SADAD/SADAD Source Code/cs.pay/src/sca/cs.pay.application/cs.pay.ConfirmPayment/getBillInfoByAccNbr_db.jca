@@ -1,0 +1,13 @@
+<adapter-config name="getBillInfoByAccNbr" adapter="Database Adapter" wsdlLocation="getBillInfoByAccNbr.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/DEVAMG" UIConnectionName="DEVAMG" adapterRef=""/>
+  <endpoint-interaction portType="getBillInfoByAccNbr_ptt" operation="getBillInfoByAccNbr">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="SELECT distinct BILL_REQ_ID, ACCOUNT_NUMBER, OFFICIAL_ID_TYPE, CUST_OFFICIAL_ID, STATUS_CODE, BATCH_ERR_ITEMS, BATCH_TOT_ITEMS, BATCH_PASS_ITEMS, DUE_DATE, BILL_CYCLE, BILL_TYPE, INVOICE_NUMBER, BILL_DUES, BILL_ORIGINAL, BILL_PAID_AMT, BILL_DATE, INVOICE_SOURCE, SERVICE_REQUEST_ID, EXPIRY_DATE, CREATION_DATE, CREATED_BY, LAST_UPDATE_DATE, LAST_UPDATED_BY, LAST_UPDATE_LOGIN, REQUEST_ID, ORG_ID, AMOUNT_HI, AMOUNT_LOW, PARTIAL_PAY_ALLOWED FROM XXAMG_RY_SADAD_BTRN_T WHERE ((ACCOUNT_NUMBER = #accountNumber) AND (STATUS_CODE = #statusCode))"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <input/>
+    <output/>
+  </endpoint-interaction>
+
+</adapter-config>

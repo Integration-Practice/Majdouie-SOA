@@ -1,0 +1,7 @@
+xquery version "1.0" encoding "Cp1252";
+<soap:Fault xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+						<faultcode>pre:svcFault</faultcode>
+						<faultstring>Service Fault</faultstring>
+						<detail>
+						</detail>
+		</soap:Fault>

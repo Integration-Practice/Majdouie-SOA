@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;bus.abcs/SADADBusinessService.biz&apos; to &apos;bus.abcs.SADAD_1.0.biz&apos;" description="Rename resource &apos;SADADBusinessService.biz&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="SADADBusinessService.biz" name="bus.abcs.SADAD_1.0.biz" stamp="1430378170873" updateReferences="true"/>
+</session>

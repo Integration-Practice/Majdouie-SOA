@@ -1,0 +1,25 @@
+<?binding.jca getBillInfo_db.jca?>
+<wsdl:definitions name="getBillInfo" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.Bills/getBillInfo" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/getBillInfo" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.Bills/getBillInfo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="getBillInfo_plt">
+        <plt:role name="getBillInfo_role">
+            <plt:portType name="tns:getBillInfo_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/getBillInfo" schemaLocation="xsd/getBillInfo.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="getBillInfoInput_msg">
+        <wsdl:part name="getBillInfoInput_msg" element="db:getBillInfoInput"/>
+    </wsdl:message>
+    <wsdl:message name="getBillInfoOutputCollection_msg">
+        <wsdl:part name="getBillInfoOutputCollection" element="db:getBillInfoOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="getBillInfo_ptt">
+        <wsdl:operation name="getBillInfo">
+            <wsdl:input message="tns:getBillInfoInput_msg"/>
+            <wsdl:output message="tns:getBillInfoOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

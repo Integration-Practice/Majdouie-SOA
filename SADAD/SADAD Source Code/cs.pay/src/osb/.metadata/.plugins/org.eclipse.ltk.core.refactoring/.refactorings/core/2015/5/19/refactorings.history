@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;core/dvm/signonProfile.xq&apos; to &apos;signonProfileDVM.xq&apos;" description="Rename resource &apos;signonProfile.xq&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="dvm/signonProfile.xq" name="signonProfileDVM.xq" stamp="1430639688392" updateReferences="true"/>
+</session>

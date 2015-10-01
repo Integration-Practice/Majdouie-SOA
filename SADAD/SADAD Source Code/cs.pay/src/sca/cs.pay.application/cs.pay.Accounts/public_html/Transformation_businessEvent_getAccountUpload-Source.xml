@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WF_EVENT_T xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/xdb/APPS/cs.pay.abcs.Accounts file:/C:/middleware/AlMajdouie/SourceCode/cap/cs.pay/src/sca/cs.pay.application/cs.pay.Accounts/xsd/APPS_WF_EVENT_T_cs.pay.abcs.Accounts.xsd" xmlns="http://xmlns.oracle.com/xdb/APPS/cs.pay.abcs.Accounts">
+   <PRIORITY xmlns="">690.72</PRIORITY>
+   <SEND_DATE xmlns="">SEND_DATE70</SEND_DATE>
+   <RECEIVE_DATE xmlns="">RECEIVE_DATE71</RECEIVE_DATE>
+   <CORRELATION_ID xmlns="">string72</CORRELATION_ID>
+   <PARAMETER_LIST xmlns="">
+      <PARAMETER_LIST_ITEM>
+         <NAME>REQ_ID</NAME>
+         <VALUE>string76</VALUE>
+      </PARAMETER_LIST_ITEM>
+      <PARAMETER_LIST_ITEM>
+         <NAME>STATUS_CODE</NAME>
+         <VALUE>string80</VALUE>
+      </PARAMETER_LIST_ITEM>
+      <PARAMETER_LIST_ITEM>
+         <NAME>string82</NAME>
+         <VALUE>string84</VALUE>
+      </PARAMETER_LIST_ITEM>
+   </PARAMETER_LIST>
+   <EVENT_NAME xmlns="">string86</EVENT_NAME>
+   <EVENT_KEY xmlns="">string88</EVENT_KEY>
+   <EVENT_DATA xmlns="">
+      <any_0 xmlns="##any">
+         <any_01>any content</any_01>
+      </any_0>
+      <any_1 xmlns="##any">
+         <any_11>any content</any_11>
+      </any_1>
+      <any_2 xmlns="##any">
+         <any_21>any content</any_21>
+      </any_2>
+   </EVENT_DATA>
+   <FROM_AGENT xmlns="">
+      <NAME>string90</NAME>
+      <SYSTEM>string92</SYSTEM>
+   </FROM_AGENT>
+   <TO_AGENT xmlns="">
+      <NAME>string94</NAME>
+      <SYSTEM>string96</SYSTEM>
+   </TO_AGENT>
+   <ERROR_SUBSCRIPTION xmlns="">OTg=</ERROR_SUBSCRIPTION>
+   <ERROR_MESSAGE xmlns="">string99</ERROR_MESSAGE>
+   <ERROR_STACK xmlns="">string101</ERROR_STACK>
+</WF_EVENT_T>

@@ -1,0 +1,650 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Tue May 19 17:13:35 AST 2015
+  Author:  E003504
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="cs_pay_BPEL_Accounts"
+         targetNamespace="http://xmlns.oracle.com/cs_pay_application/cs_pay_ConfirmAccounts/cs_pay_BPEL_Accounts"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:client="http://xmlns.oracle.com/cs_pay_application/cs_pay_ConfirmAccounts/cs_pay_BPEL_Accounts"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:ns1="http://www.AlMajdouie.sa/ebs/cs.pay.ebs.Accounts"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.ConfirmAccounts/getAccountResponseProc"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/cs.pay.application/cs.pay.ConfirmAccounts/SelectSubmittedAccounts"
+         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/SelectSubmittedAccounts"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns4="http://www.AlMajdouie.sa/ebs/cs.pay.Accounts"
+         xmlns:ns5="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:aia="http://www.oracle.com/XSL/Transform/java/oracle.apps.aia.core.xpath.AIAFunctions"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/db/sp/getAccountResponseProc"
+         xmlns:ns8="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+         xmlns:ns9="http://www.AlMajdouie.sa/ebo/util.flt.Fault"
+         xmlns:ns10="http://xmlns.alm.com/CommonService/FaultHandler/FaultHandler"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="cs_pay_bpel_accounts_client"
+                 partnerLinkType="ns1:cs_pay_BPEL_Accounts"
+                 myRole="cs.pay.ebs.Accounts"/>
+    <partnerLink name="getAccountResponseProc"
+                 partnerLinkType="ns2:getAccountResponseProc_plt"
+                 partnerRole="getAccountResponseProc_role"/>
+    <partnerLink name="SelectSubmittedAccounts"
+                 partnerLinkType="ns3:SelectSubmittedAccounts_plt"
+                 partnerRole="SelectSubmittedAccounts_role"/>
+    <partnerLink name="FaultHandler" partnerLinkType="ns10:FaultHandler"
+                 partnerRole="FaultHandlerProvider"/>
+  </partnerLinks>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="ns1:confirmAccount"/>
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="ns1:confirmAccountResponse"/>
+    <variable name="getAccountResponseProc_InputVariable"
+              messageType="ns2:args_in_msg"/>
+    <variable name="getAccountResponseProc_OutputVariable"
+              messageType="ns2:args_out_msg"/>
+    <variable name="SelectSubmittedAccounts_InputVariable"
+              messageType="ns3:SelectSubmittedAccountsInput_msg"/>
+    <variable name="SelectSubmittedAccounts_OutputVariable"
+              messageType="ns3:SelectSubmittedAccountsOutputCollection_msg"/>
+    <variable name="faultRequest_InputVariable"
+              messageType="ns10:FaultHandlerRequestMessage"/>
+    <variable name="successRecordCount" type="xsd:int"/>
+    <variable name="errorRecordCount" type="xsd:int"/>
+  </variables>
+  <faultHandlers>
+    <catch faultVariable="svcFault" faultElement="ns9:fault">
+      <sequence name="Sequence8">
+        <assign name="Assign_Fault">
+          <copy>
+            <from>$svcFault/ns8:ebmCID</from>
+            <to>$faultRequest_InputVariable.payload/ns10:BusinessProcessId</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns9:errorList/ns9:error/ns9:errorCode</from>
+            <to>$faultRequest_InputVariable.payload/ns10:ErrorText</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns9:errorList/ns9:error/ns9:description</from>
+            <to>$faultRequest_InputVariable.payload/ns10:Error_Message</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns9:timestamp</from>
+            <to>$faultRequest_InputVariable.payload/ns10:DateCreated</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns9:timestamp</from>
+            <to>$faultRequest_InputVariable.payload/ns10:ErrorDateTime</to>
+          </copy>
+          <copy>
+            <from>$svcFault/ns9:timestamp</from>
+            <to>$faultRequest_InputVariable.payload/ns10:LastUpdateDate</to>
+          </copy>
+          <copy>
+            <from>concat(ora:getCompositeName(), ':', ora:getRevision())</from>
+            <to>$faultRequest_InputVariable.payload/ns10:BusinessProcessName</to>
+          </copy>
+          <copy>
+            <from>'SADAD'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:SourceSystemName</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeInstanceId()</from>
+            <to>$faultRequest_InputVariable.payload/ns10:CompositeInstanceID</to>
+          </copy>
+          <copy>
+            <from>'Execution Failed'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:ProcessStatus</to>
+          </copy>
+          <copy>
+            <from>'Common for all Domains'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:BusinessProcessDomain</to>
+          </copy>
+          <copy>
+            <from>'OLFM'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:TargetSystemName</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$faultRequest_InputVariable.payload/ns10:FaultName</to>
+          </copy>
+          <copy>
+            <from>1</from>
+            <to>$faultRequest_InputVariable.payload/ns10:ErrorSeverity</to>
+          </copy>
+          <copy>
+            <from>'uploadBill'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:MessageOperation</to>
+          </copy>
+        </assign>
+        <invoke name="Invoke_FaultHandler" partnerLink="FaultHandler"
+                portType="ns10:FaultHandler" operation="faultRequest"
+                inputVariable="faultRequest_InputVariable"
+                bpelx:invokeAsDetail="no"/>
+      </sequence>
+    </catch>
+    <catchAll>
+      <sequence name="Sequence11">
+        <assign name="Assign_Fault"
+                xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+          <copy>
+            <from>concat(ora:getCompositeName(), ':', ora:getRevision())</from>
+            <to>$faultRequest_InputVariable.payload/ns10:BusinessProcessName</to>
+          </copy>
+          <copy>
+            <from>xp20:current-dateTime()</from>
+            <to>$faultRequest_InputVariable.payload/ns10:DateCreated</to>
+          </copy>
+          <copy>
+            <from>xp20:current-dateTime()</from>
+            <to>$faultRequest_InputVariable.payload/ns10:LastUpdateDate</to>
+          </copy>
+          <copy>
+            <from>xp20:current-dateTime()</from>
+            <to>$faultRequest_InputVariable.payload/ns10:ErrorDateTime</to>
+          </copy>
+          <copy>
+            <from>'SADAD'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:SourceSystemName</to>
+          </copy>
+          <copy>
+            <from>ora:getCompositeInstanceId()</from>
+            <to>$faultRequest_InputVariable.payload/ns10:CompositeInstanceID</to>
+          </copy>
+          <copy>
+            <from>'Execution Failed'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:ProcessStatus</to>
+          </copy>
+          <copy>
+            <from>'Common for all Domains'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:BusinessProcessDomain</to>
+          </copy>
+          <copy>
+            <from>'OLFM'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:TargetSystemName</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$faultRequest_InputVariable.payload/ns10:FaultName</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$faultRequest_InputVariable.payload/ns10:ErrorText</to>
+          </copy>
+          <copy>
+            <from>ora:getFaultAsString()</from>
+            <to>$faultRequest_InputVariable.payload/ns10:Error_Message</to>
+          </copy>
+          <copy>
+            <from>1</from>
+            <to>$faultRequest_InputVariable.payload/ns10:ErrorSeverity</to>
+          </copy>
+          <copy>
+            <from>'uploadBill'</from>
+            <to>$faultRequest_InputVariable.payload/ns10:MessageOperation</to>
+          </copy>
+        </assign>
+        <invoke name="Invoke_FaultHandler" partnerLink="FaultHandler"
+                portType="ns10:FaultHandler" operation="faultRequest"
+                inputVariable="faultRequest_InputVariable"
+                bpelx:invokeAsDetail="no"
+                xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+                xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/>
+      </sequence>
+    </catchAll>
+  </faultHandlers>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+    <!-- Receive input from requestor. (Note: This maps to operation defined in cs_pay_BPEL_Accounts.wsdl) -->
+    <receive name="receiveInput" partnerLink="cs_pay_bpel_accounts_client"
+             portType="ns1:cs.pay.ebs.Accounts" operation="confirmAccount"
+             variable="inputVariable" createInstance="yes"/>
+    <scope name="InitiateVariables" exitOnStandardFault="no">
+      <assign name="InitiateRecordCount">
+        <copy>
+          <from>0</from>
+          <to>$successRecordCount</to>
+        </copy>
+        <copy>
+          <from>0</from>
+          <to>$errorRecordCount</to>
+        </copy>
+      </assign>
+    </scope>
+    <scope name="Scope_getAccounts" exitOnStandardFault="no">
+      <sequence name="Sequence2">
+        <assign name="Assign_requestForSelectedAccount">
+          <copy>
+            <from>$inputVariable.part/ns4:header/ns5:asyncRqUID</from>
+            <to>$SelectSubmittedAccounts_InputVariable.SelectSubmittedAccountsInput_msg/ns6:reqid</to>
+          </copy>
+          <copy>
+            <from>"CONFIRMED"</from>
+            <to>$SelectSubmittedAccounts_InputVariable.SelectSubmittedAccountsInput_msg/ns6:statusCode</to>
+          </copy>
+        </assign>
+        <invoke name="Invoke_SelectSubmittedAccount"
+                partnerLink="SelectSubmittedAccounts"
+                portType="ns3:SelectSubmittedAccounts_ptt"
+                operation="SelectSubmittedAccounts"
+                inputVariable="SelectSubmittedAccounts_InputVariable"
+                outputVariable="SelectSubmittedAccounts_OutputVariable"
+                bpelx:invokeAsDetail="no"/>
+      </sequence>
+    </scope>
+    <scope name="Scope_getAccountResponsePROC" exitOnStandardFault="no">
+      <bpelx:annotation>
+        <bpelx:general>
+          <bpelx:property name="userLabel">
+            <![CDATA[Scope_setOLFMAccountsStatus]]>
+          </bpelx:property>
+        </bpelx:general>
+      </bpelx:annotation>
+      <sequence name="Sequence1">
+        <forEach parallel="no" counterName="index" name="ForEachAccount">
+          <startCounterValue>1</startCounterValue>
+          <finalCounterValue>count($SelectSubmittedAccounts_OutputVariable.SelectSubmittedAccountsOutputCollection/ns6:SelectSubmittedAccountsOutput)</finalCounterValue>
+          <scope name="Scope1">
+            <sequence>
+              <if name="Active_Account">
+                <documentation>
+                  <![CDATA[error accounts exist]]>
+                </documentation>
+                <condition>count($inputVariable.part/ns4:body/ns4:accountInfoError) &gt; 0</condition>
+                <forEach parallel="no" counterName="count"
+                         name="ForEachAccount">
+                  <startCounterValue>1</startCounterValue>
+                  <finalCounterValue>count($inputVariable.part/ns4:body/ns4:accountInfoError)</finalCounterValue>
+                  <scope name="Scope2">
+                    <sequence name="Sequence4">
+                      <if name="checkEachAccount">
+                        <documentation>
+                          <![CDATA[account is not correct]]>
+                        </documentation>
+                        <condition>$inputVariable.part/ns4:body/ns4:accountInfoError[$count]/ns4:accountInformation/ns4:billingAccount = $SelectSubmittedAccounts_OutputVariable.SelectSubmittedAccountsOutputCollection/ns6:SelectSubmittedAccountsOutput[$index]/ns6:ACCOUNT_NUMER</condition>
+                        <sequence name="Sequence7">
+                          <assign name="Assign_GetAccountResponseProcRQ"
+                                  xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                            <copy>
+                              <from>$inputVariable.part/ns4:header/ns5:asyncRqUID</from>
+                              <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_ACC_REQ_ID</to>
+                            </copy>
+                            <copy>
+                              <from>"ERROR"</from>
+                              <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_STATUS_CODE</to>
+                            </copy>
+                            <copy>
+                              <from>$inputVariable.part/ns4:body/ns4:accountInfoError[$count]/ns4:accountInformation/ns4:billingAccount</from>
+                              <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_ACCOUNT_NUMER</to>
+                            </copy>
+                            <copy>
+                              <from>$inputVariable.part/ns4:body/ns4:accountInfoError[$count]/ns4:accountInformation/ns4:officialId</from>
+                              <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_CUST_OFFICIAL_ID</to>
+                            </copy>
+                            <copy>
+                              <from>$inputVariable.part/ns4:body/ns4:accountInfoError[$count]/ns4:error/ns4:errorCode</from>
+                              <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_ERROR_CODE</to>
+                            </copy>
+                            <copy>
+                              <from>$inputVariable.part/ns4:body/ns4:accountInfoError/ns4:error[$count]/ns4:errorMessage</from>
+                              <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_ERROR_MESSAGE</to>
+                            </copy>
+                          </assign>
+                        </sequence>
+                        <else>
+                          <sequence name="Sequence6">
+                            <assign name="Assign_GetAccountResponseProcRQ"
+                                    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                              <copy>
+                                <from>$inputVariable.part/ns4:header/ns5:asyncRqUID</from>
+                                <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_ACC_REQ_ID</to>
+                              </copy>
+                              <copy>
+                                <from>$SelectSubmittedAccounts_OutputVariable.SelectSubmittedAccountsOutputCollection/ns6:SelectSubmittedAccountsOutput[$index]/ns6:CUST_OFFICIAL_ID</from>
+                                <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_CUST_OFFICIAL_ID</to>
+                              </copy>
+                              <copy>
+                                <from>$SelectSubmittedAccounts_OutputVariable.SelectSubmittedAccountsOutputCollection/ns6:SelectSubmittedAccountsOutput[$index]/ns6:ACCOUNT_NUMER</from>
+                                <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_ACCOUNT_NUMER</to>
+                              </copy>
+                              <copy>
+                                <from>"ACTIVE"</from>
+                                <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_STATUS_CODE</to>
+                              </copy>
+                            </assign>
+                          </sequence>
+                        </else>
+                      </if>
+                      <invoke name="Invoke_getAccountResponseProc"
+                              partnerLink="getAccountResponseProc"
+                              portType="ns2:getAccountResponseProc_ptt"
+                              operation="getAccountResponseProc"
+                              inputVariable="getAccountResponseProc_InputVariable"
+                              outputVariable="getAccountResponseProc_OutputVariable"
+                              xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+                              xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+                              bpelx:invokeAsDetail="no"/>
+                      <if name="checkOLFMStatusCode"
+                          xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                        <documentation>
+                          <![CDATA[failure]]>
+                        </documentation>
+                        <condition>$getAccountResponseProc_OutputVariable.OutputParameters/ns7:X_STATUS_CODE != '0000'</condition>
+                        <sequence name="Sequence4">
+                          <assign name="Assign_errorRecordCount">
+                            <copy>
+                              <from>$errorRecordCount + 1</from>
+                              <to>$errorRecordCount</to>
+                            </copy>
+                          </assign>
+                          <assign name="setOLFMFault">
+                            <copy>
+                              <from>concat(ora:getCompositeName(), ':', ora:getRevision())</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:BusinessProcessName</to>
+                            </copy>
+                            <copy>
+                              <from>'OLFM'</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:SourceSystemName</to>
+                            </copy>
+                            <copy>
+                              <from>ora:getCompositeInstanceId()</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:CompositeInstanceID</to>
+                            </copy>
+                            <copy>
+                              <from>'Execution Failed'</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:ProcessStatus</to>
+                            </copy>
+                            <copy>
+                              <from>'Common for all Domains'</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:BusinessProcessDomain</to>
+                            </copy>
+                            <copy>
+                              <from>'SADAD'</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:TargetSystemName</to>
+                            </copy>
+                            <copy>
+                              <from>xp20:current-dateTime()</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:DateCreated</to>
+                            </copy>
+                            <copy>
+                              <from>xp20:current-dateTime()</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:LastUpdateDate</to>
+                            </copy>
+                            <copy>
+                              <from>$getAccountResponseProc_OutputVariable.OutputParameters/ns7:X_STATUS_CODE</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:FaultName</to>
+                            </copy>
+                            <copy>
+                              <from>$getAccountResponseProc_OutputVariable.OutputParameters/ns7:X_STATUS_CODE</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:ErrorText</to>
+                            </copy>
+                            <copy>
+                              <from>1</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:ErrorSeverity</to>
+                            </copy>
+                            <copy>
+                              <from>xp20:current-dateTime()</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:ErrorDateTime</to>
+                            </copy>
+                            <copy>
+                              <from>'uploadBill'</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:MessageOperation</to>
+                            </copy>
+                            <copy>
+                              <from>dvm:lookupValue("Error.dvm","errorCode",$getAccountResponseProc_OutputVariable.OutputParameters/ns7:X_STATUS_CODE,"OLFMError","unexpected error")</from>
+                              <to>$faultRequest_InputVariable.payload/ns10:Error_Message</to>
+                            </copy>
+                          </assign>
+                          <invoke name="Invoke_FaultHandler"
+                                  partnerLink="FaultHandler"
+                                  portType="ns10:FaultHandler"
+                                  operation="faultRequest"
+                                  bpelx:invokeAsDetail="no"
+                                  inputVariable="faultRequest_InputVariable"
+                                  xmlns:bpelx="http://schemas.oracle.com/bpel/extension"/>
+                        </sequence>
+                        <else>
+                          <documentation>
+                            <![CDATA[success]]>
+                          </documentation>
+                          <sequence name="Sequence9">
+                            <assign name="Assign_successRecordCount">
+                              <copy>
+                                <from>$successRecordCount + 1</from>
+                                <to>$successRecordCount</to>
+                              </copy>
+                            </assign>
+                            <empty name="DoNothing"/>
+                          </sequence>
+                        </else>
+                      </if>
+                    </sequence>
+                  </scope>
+                </forEach>
+                <else>
+                  <documentation>
+                    <![CDATA[all accounts are correct]]>
+                  </documentation>
+                  <sequence>
+                    <assign name="Assign_GetAccountResponseProcRQ">
+                      <copy>
+                        <from>$inputVariable.part/ns4:header/ns5:asyncRqUID</from>
+                        <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_ACC_REQ_ID</to>
+                      </copy>
+                      <copy>
+                        <from>$SelectSubmittedAccounts_OutputVariable.SelectSubmittedAccountsOutputCollection/ns6:SelectSubmittedAccountsOutput[$index]/ns6:CUST_OFFICIAL_ID</from>
+                        <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_CUST_OFFICIAL_ID</to>
+                      </copy>
+                      <copy>
+                        <from>$SelectSubmittedAccounts_OutputVariable.SelectSubmittedAccountsOutputCollection/ns6:SelectSubmittedAccountsOutput[$index]/ns6:ACCOUNT_NUMER</from>
+                        <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_ACCOUNT_NUMER</to>
+                      </copy>
+                      <copy>
+                        <from>"ACTIVE"</from>
+                        <to>$getAccountResponseProc_InputVariable.InputParameters/ns7:P_STATUS_CODE</to>
+                      </copy>
+                    </assign>
+                    <invoke name="Invoke_getAccountResponseProc"
+                            partnerLink="getAccountResponseProc"
+                            portType="ns2:getAccountResponseProc_ptt"
+                            operation="getAccountResponseProc"
+                            inputVariable="getAccountResponseProc_InputVariable"
+                            outputVariable="getAccountResponseProc_OutputVariable"
+                            bpelx:invokeAsDetail="no"/>
+                    <if name="checkOLFMStatusCode"
+                        xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                      <documentation>
+                        <![CDATA[failure]]>
+                      </documentation>
+                      <condition>$getAccountResponseProc_OutputVariable.OutputParameters/ns7:X_STATUS_CODE != '0000'</condition>
+                      <sequence name="Sequence4">
+                        <assign name="Assign_errorRecordCount"
+                                xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                          <copy>
+                            <from>$errorRecordCount + 1</from>
+                            <to>$errorRecordCount</to>
+                          </copy>
+                        </assign>
+                        <assign name="setOLFMFault">
+                          <copy>
+                            <from>concat(ora:getCompositeName(), ':', ora:getRevision())</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:BusinessProcessName</to>
+                          </copy>
+                          <copy>
+                            <from>'OLFM'</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:SourceSystemName</to>
+                          </copy>
+                          <copy>
+                            <from>ora:getCompositeInstanceId()</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:CompositeInstanceID</to>
+                          </copy>
+                          <copy>
+                            <from>'Execution Failed'</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:ProcessStatus</to>
+                          </copy>
+                          <copy>
+                            <from>'Common for all Domains'</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:BusinessProcessDomain</to>
+                          </copy>
+                          <copy>
+                            <from>'SADAD'</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:TargetSystemName</to>
+                          </copy>
+                          <copy>
+                            <from>xp20:current-dateTime()</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:DateCreated</to>
+                          </copy>
+                          <copy>
+                            <from>xp20:current-dateTime()</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:LastUpdateDate</to>
+                          </copy>
+                          <copy>
+                            <from>$getAccountResponseProc_OutputVariable.OutputParameters/ns7:X_STATUS_CODE</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:FaultName</to>
+                          </copy>
+                          <copy>
+                            <from>$getAccountResponseProc_OutputVariable.OutputParameters/ns7:X_STATUS_CODE</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:ErrorText</to>
+                          </copy>
+                          <copy>
+                            <from>1</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:ErrorSeverity</to>
+                          </copy>
+                          <copy>
+                            <from>xp20:current-dateTime()</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:ErrorDateTime</to>
+                          </copy>
+                          <copy>
+                            <from>'uploadBill'</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:MessageOperation</to>
+                          </copy>
+                          <copy>
+                            <from>dvm:lookupValue("Error.dvm","errorCode",$getAccountResponseProc_OutputVariable.OutputParameters/ns7:X_STATUS_CODE,"OLFMError","unexpected error")</from>
+                            <to>$faultRequest_InputVariable.payload/ns10:Error_Message</to>
+                          </copy>
+                        </assign>
+                        <invoke name="Invoke_FaultHandler"
+                                partnerLink="FaultHandler"
+                                portType="ns10:FaultHandler"
+                                operation="faultRequest"
+                                bpelx:invokeAsDetail="no"
+                                inputVariable="faultRequest_InputVariable"
+                                xmlns:bpelx="http://schemas.oracle.com/bpel/extension"/>
+                      </sequence>
+                      <else>
+                        <documentation>
+                          <![CDATA[success]]>
+                        </documentation>
+                        <sequence name="Sequence10">
+                          <assign name="Assign_successRecordCount"
+                                  xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                            <copy>
+                              <from>$successRecordCount + 1</from>
+                              <to>$successRecordCount</to>
+                            </copy>
+                          </assign>
+                          <empty name="DoNothing"/>
+                        </sequence>
+                      </else>
+                    </if>
+                  </sequence>
+                </else>
+              </if>
+            </sequence>
+          </scope>
+        </forEach>
+      </sequence>
+    </scope>
+    <scope name="Scope_assignResponse" exitOnStandardFault="no">
+      <bpelx:annotation>
+        <bpelx:general>
+          <bpelx:property name="userLabel">
+            <![CDATA[Scope_setOutputResponse]]>
+          </bpelx:property>
+        </bpelx:general>
+      </bpelx:annotation>
+      <assign name="Assign_outputResponse">
+        <copy>
+          <from>$inputVariable.part/ns4:header/ns5:asyncRqUID</from>
+          <to>$outputVariable.part/ns5:body/ns5:asyncRqUID</to>
+        </copy>
+        <copy>
+          <from>0</from>
+          <to>$outputVariable.part/ns5:body/ns5:statusCode</to>
+        </copy>
+        <copy>
+          <from>$inputVariable.part/ns4:header/ns5:rqUID</from>
+          <to>$outputVariable.part/ns5:body/ns5:rqUID</to>
+        </copy>
+        <copy>
+          <from>$inputVariable.part/ns4:header/ns5:clientDate</from>
+          <to>$outputVariable.part/ns5:body/ns5:clientDate</to>
+        </copy>
+        <copy>
+          <from>$inputVariable.part/ns4:header/ns5:uploadDate</from>
+          <to>$outputVariable.part/ns5:body/ns5:uploadDate</to>
+        </copy>
+        <copy>
+          <from>$inputVariable.part/ns4:header/ns5:processingDate</from>
+          <to>$outputVariable.part/ns5:body/ns5:processingDate</to>
+        </copy>
+        <copy>
+          <from>$inputVariable.part/ns4:header/ns5:rqUID</from>
+          <to>$outputVariable.part/ns5:header/ns8:rquid</to>
+        </copy>
+        <copy>
+          <from>$successRecordCount</from>
+          <to>$outputVariable.part/ns5:body/ns5:successRecordCount</to>
+        </copy>
+        <copy>
+          <from>$errorRecordCount</from>
+          <to>$outputVariable.part/ns5:body/ns5:errorRecordCount</to>
+        </copy>
+      </assign>
+    </scope>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="cs_pay_bpel_accounts_client"
+           portType="ns1:cs.pay.ebs.Accounts" operation="confirmAccount"
+           variable="outputVariable"/>
+  </sequence>
+</process>

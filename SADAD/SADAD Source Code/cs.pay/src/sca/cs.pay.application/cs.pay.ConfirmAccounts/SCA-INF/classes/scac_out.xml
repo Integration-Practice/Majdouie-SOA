@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>98</line>
+      <col/>
+      <file>cs_pay_BPEL_Accounts.bpel</file>
+      <name>cs_pay_BPEL_Accounts.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns9:error" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>102</line>
+      <col/>
+      <file>cs_pay_BPEL_Accounts.bpel</file>
+      <name>cs_pay_BPEL_Accounts.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns9:error" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>329</line>
+      <col/>
+      <file>cs_pay_BPEL_Accounts.bpel</file>
+      <name>cs_pay_BPEL_Accounts.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns4:accountInfoError" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>cs.pay.mediator.Accounts.mplan</file>
+      <name>cs.pay.mediator.Accounts.mplan</name>
+      <fix/>
+      <msg>Operation\Event "uploadAccount" does not contain case. No operation\event will be executed\processed respectively.</msg>
+   </Fault>
+</Faults>

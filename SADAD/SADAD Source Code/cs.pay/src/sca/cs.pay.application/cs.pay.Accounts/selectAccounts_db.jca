@@ -1,0 +1,13 @@
+<adapter-config name="selectAccounts" adapter="Database Adapter" wsdlLocation="selectAccounts.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/DEVAMG" UIConnectionName="DEVAMG" adapterRef=""/>
+  <endpoint-interaction portType="selectAccounts_ptt" operation="selectAccounts">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="SELECT distinct ACC_REQ_ID, ACCOUNT_NUMER, OFFICIAL_ID_TYPE, CUST_OFFICIAL_ID, REQ_DATE, STATUS_CODE, BATCH_ERR_ITEMS, BATCH_TOT_ITEMS, BATCH_PASS_ITEMS, CREATION_DATE, CREATED_BY, LAST_UPDATE_DATE, LAST_UPDATED_BY, LAST_UPDATE_LOGIN, REQUEST_ID, ORG_ID FROM XXAMG_RY_SADAD_ACCT_T WHERE ((ACC_REQ_ID = #reqid) AND (STATUS_CODE = #statusCode))"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <input/>
+    <output/>
+  </endpoint-interaction>
+
+</adapter-config>

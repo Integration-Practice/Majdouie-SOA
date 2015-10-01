@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench progressCount="93" version="2.0">
+<workbenchAdvisor/>
+<window height="768" maximized="true" width="1024" x="200" y="92">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="160"/>
+</perspectiveBar>
+<coolbarLayout>
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="122" y="22"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="129" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="99" y="22"/>
+<coolItem id="org.eclipse.wst.server.ui.new.actionSet" itemType="typeToolBarContribution" x="38" y="22"/>
+<coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.wst.server.ui.editor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.bea.alsb.common.mapper.editors.MapperEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.wsdl.ui.internal.WSDLEditor" itemType="typePlaceholder" x="104" y="22"/>
+<coolItem id="com.bea.alsb.ui.editors.biz" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="com.bea.alsb.ui.editors.proxy" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xsd.ui.internal.editor.InternalXSDMultiPageEditor" itemType="typePlaceholder" x="104" y="22"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page aggregateWorkingSetId="Aggregate for window 1428995075746" focus="true" label="Workspace - Oracle Service Bus">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor activePart="true" focus="true" id="com.bea.alsb.ui.editors.proxy" name="chn.ext.abcs.SADAD_1.0.proxy" partName="chn.ext.abcs.SADAD_1.0.proxy" path="D:/Karuna/From Marwan/SADAD code/cs.pay/src/osb/chn.ext/chn.ext.abcs.SADAD_1.0/chn.ext.abcs.SADAD_1.0.proxy" title="chn.ext.abcs.SADAD_1.0.proxy" tooltip="chn.ext/chn.ext.abcs.SADAD_1.0/chn.ext.abcs.SADAD_1.0.proxy" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/chn.ext/chn.ext.abcs.SADAD_1.0/chn.ext.abcs.SADAD_1.0.proxy"/>
+</editor>
+<editor id="com.bea.alsb.ui.editors.proxy" name="cs.pay.ebs.Accounts_1.0.proxy" partName="cs.pay.ebs.Accounts_1.0.proxy" path="D:/Karuna/From Marwan/SADAD code/cs.pay/src/osb/cs.pay/cs.pay.ebs.Accounts_1.0/cs.pay.ebs.Accounts_1.0.proxy" title="cs.pay.ebs.Accounts_1.0.proxy" tooltip="cs.pay/cs.pay.ebs.Accounts_1.0/cs.pay.ebs.Accounts_1.0.proxy" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/cs.pay/cs.pay.ebs.Accounts_1.0/cs.pay.ebs.Accounts_1.0.proxy"/>
+</editor>
+<editor id="com.bea.alsb.ui.editors.biz" name="bus.abcs.confirmAccounts_1.0.biz" partName="bus.abcs.confirmAccounts_1.0.biz" path="D:/Karuna/From Marwan/SADAD code/cs.pay/src/osb/bus.abcs/bus.abcs.confirmAccounts_1.0.biz" title="bus.abcs.confirmAccounts_1.0.biz" tooltip="bus.abcs/bus.abcs.confirmAccounts_1.0.biz" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/bus.abcs/bus.abcs.confirmAccounts_1.0.biz"/>
+</editor>
+</editors>
+<views>
+<view id="org.eclipse.ui.views.ProgressView" partName="Progress">
+<viewState/>
+</view>
+<view id="com.bea.alsb.common.mapper.views.DataPalette" partName="Expression Variables">
+<viewState/>
+</view>
+<view id="com.bea.alsb.common.xquery.ui.views.FunctionsPalette" partName="Expression Functions">
+<viewState/>
+</view>
+<view id="com.bea.alsb.common.mapper.views.ConstraintsView" partName="Constraints"/>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.completionField" categoryGroup="none" markerContentGenerator="org.eclipse.ui.ide.tasksGenerator" partName="Tasks">
+<columnWidths org.eclipse.ui.ide.completionField="40" org.eclipse.ui.ide.descriptionField="300" org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.priorityField="30" org.eclipse.ui.ide.resourceField="90"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.completionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.priorityField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.descriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="com.bea.alsb.ui.views.ReferenceView" partName="References">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
+<view id="com.bea.workshop.common.ui.CorePaletteView" partName="Design Palette">
+<viewState/>
+</view>
+<view id="com.bea.alsb.common.mapper.views.TargetExpression" partName="Target Expression">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.PropertySheet" partName="Properties">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ResourceNavigator" partName="Navigator">
+<viewState LINK_NAVIGATOR_TO_EDITOR="0" sorter="1">
+<filters>&#x0A;<filter element="*.class" isEnabled="true"/>
+<filter element=".*" isEnabled="false"/>
+<filter element="*.pyc" isEnabled="true"/>
+<filter element="*.class" isEnabled="true"/>
+<filter element="*.pyo" isEnabled="true"/>
+</filters>
+<expanded>&#x0A;<element path="/chn.ext"/>
+<element path="/core"/>
+<element path="/core/xquery"/>
+<element path="/cs.pay"/>
+<element path="/cs.pay/cs.pay.ebs.Accounts_1.0"/>
+<element path="/cs.pay/cs.pay.ebs.Accounts_1.0/xquery"/>
+<element path="/cs.pay/cs.pay.ebs.Payments_1.0"/>
+</expanded>
+<selection>&#x0A;<element path="/core/xquery"/>
+</selection>
+</viewState>
+</view>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Warnings (44 items)"/>
+</expanded>
+<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="1087"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.eclipse.mylyn.tasks.ui.views.tasks" partName="Task List"/>
+<view id="org.eclipse.wst.server.ui.ServersView" partName="Servers">
+<viewState CommonNavigator.LINKING_ENABLED="0"/>
+</view>
+</views>
+<perspectives activePart="com.bea.alsb.ui.editors.proxy" activePerspective="com.bea.alsb.ui.perspectives.aqualogic">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
+<alwaysOnActionSet id="org.eclipse.help.internal.ui.HelpActionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.springframework.ide.eclipse.beans.ui.actionSet"/>
+<alwaysOnActionSet id="org.springframework.ide.eclipse.beans.search.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<show_view_action id="org.eclipse.ui.views.BookmarkView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.ProgressView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<show_view_action id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="oracle.eclipse.tools.webservices.ui.wizards.WebServiceProjectWizard"/>
+<new_wizard_action id="oracle.eclipse.tools.webtier.adf.ui.wizard.internal.newadfapplication.NewADFApplicationWizard"/>
+<new_wizard_action id="org.eclipse.mylyn.tasks.ui.wizards.new.repository.task"/>
+<new_wizard_action id="org.eclipse.ui.editors.wizards.UntitledTextFileWizard"/>
+<new_wizard_action id="org.springframework.ide.eclipse.beans.ui.wizards.newBeansConfig"/>
+<new_wizard_action id="org.springframework.ide.eclipse.beans.ui.wizards.newSpringProject"/>
+<perspective_action id="com.bea.alsb.common.mapper.perspectives.MapperPerspective"/>
+<perspective_action id="com.bea.alsb.ui.perspectives.aqualogic"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<perspective_action id="org.eclipse.jst.j2ee.J2EEPerspective"/>
+<perspective_action id="org.eclipse.team.cvs.ui.cvsPerspective"/>
+<perspective_action id="org.eclipse.team.ui.TeamSynchronizingPerspective"/>
+<perspective_action id="org.eclipse.wst.jsdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.wst.xml.ui.perspective"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="com.bea.workshop.common.ui.CorePaletteView"/>
+<fastViewBars/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.team.ccvs.ui.RepositoriesView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@d8d90c" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="topLeft">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info part="org.eclipse.gef.ui.palette_view" ratio="0.26" ratioLeft="260" ratioRight="740" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottomRight" ratio="0.6599691" ratioLeft="427" ratioRight="220" relationship="4" relative="org.eclipse.gef.ui.palette_view">&#x0A;<folder activePageID="org.eclipse.ui.views.TaskList" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.team.ui.GenericHistoryView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@e4cf81" ratio="0.5" ratioLeft="370" ratioRight="370" relationship="2" relative="bottomRight">&#x0A;<folder activePageID="com.bea.workshop.common.ui.CorePaletteView" appearance="2" expanded="2">&#x0A;<page content="com.bea.workshop.common.ui.CorePaletteView" label="Design Palette"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.15945946" ratioLeft="118" ratioRight="622" relationship="2" relative="org.eclipse.gef.ui.palette_view"/>
+<info folder="true" part="bottomLeft" ratio="0.4992272" ratioLeft="323" ratioRight="324" relationship="4" relative="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="com.bea.alsb.ui.perspectives.AquaLogicPerspectiveFactory" id="com.bea.alsb.ui.perspectives.aqualogic" label="Oracle Service Bus"/>
+<alwaysOnActionSet id="org.eclipse.help.internal.ui.HelpActionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.springframework.ide.eclipse.beans.ui.actionSet"/>
+<alwaysOnActionSet id="org.springframework.ide.eclipse.beans.search.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.wst.server.ui.new.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<show_view_action id="com.bea.alsb.ui.views.ReferenceView"/>
+<show_view_action id="org.eclipse.wst.server.ui.ServersView"/>
+<show_view_action id="com.bea.workshop.common.ui.CorePaletteView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.newproject"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.newcontainer"/>
+<new_wizard_action id="com.bea.alsb.common.formatbuilder.wizards.MFLNewWizard"/>
+<new_wizard_action id="org.eclipse.wst.wsdl.ui"/>
+<new_wizard_action id="org.eclipse.wst.xsd.ui.internal.wizards.NewXSDWizard"/>
+<new_wizard_action id="com.bea.alsb.common.mapper.wizards.MapperNewWizard"/>
+<new_wizard_action id="org.eclipse.wst.server.ui.new.server"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="com.bea.alsb.process.flow.ui.wizards.NewFlowWizard"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.alert"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.cr"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.jndi"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.ps"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.sa"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.proxy"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.biz"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.skp"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.smtp"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.uddi"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.policy"/>
+<new_wizard_action id="com.bea.alsb.ui.wizards.xslt"/>
+<perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.team.ui.TeamSynchronizingPerspective"/>
+<perspective_action id="com.bea.wlw.common.ui.perspectives.workshop"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="com.bea.workshop.common.ui.CorePaletteView"/>
+<view id="com.bea.alsb.ui.views.ReferenceView"/>
+<view id="org.eclipse.ui.views.PropertySheet"/>
+<view id="org.eclipse.wst.server.ui.ServersView"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.ui.views.ProgressView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="topLeft">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1074" ratioRight="358" relationship="2" relative="topLeft">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.1938326" ratioLeft="308" ratioRight="1281" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottom" ratio="0.69148934" ratioLeft="520" ratioRight="232" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.views.PropertySheet" appearance="2" expanded="2">
+<page content="com.bea.alsb.ui.views.ReferenceView" label="References"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
+<page content="org.eclipse.wst.server.ui.ServersView" label="Servers"/>
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.views.ProgressView" label="Progress"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="topRight" ratio="0.8" ratioLeft="848" ratioRight="212" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="com.bea.workshop.common.ui.CorePaletteView" appearance="2" expanded="2">
+<page content="com.bea.workshop.common.ui.CorePaletteView" label="Design Palette"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="bottomLeft" ratio="0.6" ratioLeft="453" ratioRight="302" relationship="4" relative="topLeft">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="com.bea.wli.ide.mapper.perspectives.MapperPerspective" id="com.bea.alsb.common.mapper.perspectives.MapperPerspective" label="XQuery Transformation"/>
+<alwaysOnActionSet id="org.eclipse.help.internal.ui.HelpActionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.springframework.ide.eclipse.beans.ui.actionSet"/>
+<alwaysOnActionSet id="org.springframework.ide.eclipse.beans.search.actionSet"/>
+<alwaysOnActionSet id="com.bea.alsb.common.formatbuilder.actionSet"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="com.bea.alsb.common.xquery.ui.views.FunctionsPalette"/>
+<show_view_action id="com.bea.alsb.common.mapper.views.DataPalette"/>
+<show_view_action id="com.bea.alsb.common.mapper.views.TargetExpression"/>
+<show_view_action id="com.bea.alsb.common.mapper.views.ConstraintsView"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="com.bea.alsb.common.mapper.wizards.MapperNewWizard"/>
+<new_wizard_action id="com.bea.alsb.common.formatbuilder.wizards.MFLNewWizard"/>
+<perspective_action id="org.eclipse.ui.resourcePerspective"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="com.bea.alsb.common.mapper.views.DataPalette"/>
+<view id="org.eclipse.ui.views.ResourceNavigator"/>
+<view id="com.bea.alsb.common.xquery.ui.views.FunctionsPalette"/>
+<view id="com.bea.alsb.common.mapper.views.TargetExpression"/>
+<view id="com.bea.alsb.common.mapper.views.ConstraintsView"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.ui.views.PropertySheet"/>
+<fastViewBars/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.views.ResourceNavigator" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ResourceNavigator" label="Navigator"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7496371" ratioLeft="1033" ratioRight="345" relationship="2" relative="topLeft">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.19956459" ratioLeft="275" ratioRight="1103" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottomFrame" ratio="0.7340425" ratioLeft="552" ratioRight="200" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.PropertySheet" appearance="2" expanded="2">&#x0A;<page content="com.bea.alsb.common.mapper.views.TargetExpression" label="Target Expression"/>
+<page content="com.bea.alsb.common.mapper.views.ConstraintsView" label="Constraints"/>
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="middleLeft" ratio="0.32980132" ratioLeft="249" ratioRight="506" relationship="4" relative="topLeft">&#x0A;<folder activePageID="com.bea.alsb.common.xquery.ui.views.FunctionsPalette" appearance="2" expanded="2">&#x0A;<page content="com.bea.alsb.common.xquery.ui.views.FunctionsPalette" label="Expression Functions"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="bottomLeft" ratio="0.5" ratioLeft="253" ratioRight="253" relationship="4" relative="middleLeft">&#x0A;<folder activePageID="com.bea.alsb.common.mapper.views.DataPalette" appearance="2" expanded="2">&#x0A;<page content="com.bea.alsb.common.mapper.views.DataPalette" label="Expression Variables"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/cs.pay/cs.pay.ebs.Accounts_1.0/cs.pay.ebs.Accounts_1.0.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" path="/core/xquery/util.flt.createFault.xq"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/chn.ext/chn.ext.abcs.SADAD_1.0/chn.ext.abcs.SADAD_1.0.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/cs.pay/cs.pay.ebs.Bills_1.0/cs.pay.ebs.Bills_1.0.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/cs.pay/cs.pay.ebs.Payments_1.0/cs.pay.ebs.Payments_1.0.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" path="/core/xquery/util.cmn.addNameSpace.xq"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" path="/core/xquery/util.cmn.faultHdr.xq"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/cs.pay/cs.pay.ebs.Bills_1.0/cs.pay.ebs.Bills_1.0.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/chn.ext/chn.ext.abcs.SADAD_1.0/chn.ext.abcs.SADAD_1.0.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/cs.pay.mock.services/SADAD.Mocking.Services.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/cs.pay/cs.pay.ebs.Accounts_1.0/cs.pay.ebs.Accounts_1.0.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" path="/core/dvm/signonProfileDVM.xq"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/cs.pay.mock.services/SADAD.Mocking.Services.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" path="/chn.ext/chn.ext.abcs.SADAD_1.0/chn.ext.abcs.SADAD_1.0.proxy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" path="/chn.ext/chn.ext.abcs.SADAD_1.0/xquery/BillConfirmationRq_confirmBill.xq"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.biz" path="/bus.abcs/bus.abcs.confirmAccounts_1.0.biz"/>
+</editors>
+<item historyLabel="util.flt.createFault.xq" index="1"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="util.flt.createFault.xq" index="1"/>
+<item historyLabel="util.cmn.addNameSpace.xq" index="5"/>
+<item historyLabel="util.flt.createFault.xq" index="1"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="util.cmn.faultHdr.xq" index="6"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="chn.ext.abcs.SADAD_1.0.proxy" index="2"/>
+<item historyLabel="cs.pay.ebs.Bills_1.0.proxy" index="3"/>
+<item historyLabel="cs.pay.ebs.Payments_1.0.proxy" index="4"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="util.cmn.faultHdr.xq" index="6"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="util.cmn.faultHdr.xq" index="6"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="util.flt.createFault.xq" index="1"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="util.flt.createFault.xq" index="1"/>
+<item historyLabel="util.cmn.addNameSpace.xq" index="5"/>
+<item historyLabel="util.flt.createFault.xq" index="1"/>
+<item historyLabel="util.cmn.addNameSpace.xq" index="5"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="util.cmn.addNameSpace.xq" index="5"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="util.flt.createFault.xq" index="1"/>
+<item historyLabel="util.cmn.addNameSpace.xq" index="5"/>
+<item historyLabel="util.flt.createFault.xq" index="1"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="0"/>
+<item historyLabel="cs.pay.ebs.Bills_1.0.proxy" index="7"/>
+<item historyLabel="cs.pay.ebs.Payments_1.0.proxy" index="4"/>
+<item historyLabel="chn.ext.abcs.SADAD_1.0.proxy" index="8"/>
+<item historyLabel="SADAD.Mocking.Services.proxy" index="9"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="10"/>
+<item historyLabel="SADAD.Mocking.Services.proxy" index="9"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="10"/>
+<item historyLabel="signonProfileDVM.xq" index="11"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="10"/>
+<item historyLabel="SADAD.Mocking.Services.proxy" index="12"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="10"/>
+<item historyLabel="chn.ext.abcs.SADAD_1.0.proxy" index="13"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="10"/>
+<item historyLabel="SADAD.Mocking.Services.proxy" index="12"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="10"/>
+<item historyLabel="chn.ext.abcs.SADAD_1.0.proxy" index="13"/>
+<item historyLabel="BillConfirmationRq_confirmBill.xq" index="14"/>
+<item historyLabel="chn.ext.abcs.SADAD_1.0.proxy" index="13"/>
+<item historyLabel="cs.pay.ebs.Accounts_1.0.proxy" index="10"/>
+<item historyLabel="bus.abcs.confirmAccounts_1.0.biz" index="15"/>
+<item active="true" historyLabel="chn.ext.abcs.SADAD_1.0.proxy" index="13"/>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+<trimItem IMemento.internal.id="org.eclipse.mylyn.tasks.ui.trim.container"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.biz" name="bus.abcs.confirmAccounts_1.0.biz" tooltip="bus.abcs/bus.abcs.confirmAccounts_1.0.biz">
+<persistable path="/bus.abcs/bus.abcs.confirmAccounts_1.0.biz"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" name="cs.pay.ebs.Accounts_1.0.proxy" tooltip="cs.pay/cs.pay.ebs.Accounts_1.0/cs.pay.ebs.Accounts_1.0.proxy">
+<persistable path="/cs.pay/cs.pay.ebs.Accounts_1.0/cs.pay.ebs.Accounts_1.0.proxy"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" name="BillConfirmationRq_confirmBill.xq" tooltip="chn.ext/chn.ext.abcs.SADAD_1.0/xquery/BillConfirmationRq_confirmBill.xq">
+<persistable path="/chn.ext/chn.ext.abcs.SADAD_1.0/xquery/BillConfirmationRq_confirmBill.xq"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" name="chn.ext.abcs.SADAD_1.0.proxy" tooltip="chn.ext/chn.ext.abcs.SADAD_1.0/chn.ext.abcs.SADAD_1.0.proxy">
+<persistable path="/chn.ext/chn.ext.abcs.SADAD_1.0/chn.ext.abcs.SADAD_1.0.proxy"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" name="SADAD.Mocking.Services.proxy" tooltip="cs.pay.mock.services/SADAD.Mocking.Services.proxy">
+<persistable path="/cs.pay.mock.services/SADAD.Mocking.Services.proxy"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" name="signonProfileDVM.xq" tooltip="core/dvm/signonProfileDVM.xq">
+<persistable path="/core/dvm/signonProfileDVM.xq"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" name="cs.pay.ebs.Payments_1.0.proxy" tooltip="cs.pay/cs.pay.ebs.Payments_1.0/cs.pay.ebs.Payments_1.0.proxy">
+<persistable path="/cs.pay/cs.pay.ebs.Payments_1.0/cs.pay.ebs.Payments_1.0.proxy"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.ui.editors.proxy" name="cs.pay.ebs.Bills_1.0.proxy" tooltip="cs.pay/cs.pay.ebs.Bills_1.0/cs.pay.ebs.Bills_1.0.proxy">
+<persistable path="/cs.pay/cs.pay.ebs.Bills_1.0/cs.pay.ebs.Bills_1.0.proxy"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" name="util.cmn.faultHdr.xq" tooltip="core/xquery/util.cmn.faultHdr.xq">
+<persistable path="/core/xquery/util.cmn.faultHdr.xq"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" name="util.cmn.addNameSpace.xq" tooltip="core/xquery/util.cmn.addNameSpace.xq">
+<persistable path="/core/xquery/util.cmn.addNameSpace.xq"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" name="util.flt.createFault.xq" tooltip="core/xquery/util.flt.createFault.xq">
+<persistable path="/core/xquery/util.flt.createFault.xq"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" name="AccountUploadRs_uploadAccountResponse.xq" tooltip="cs.pay/cs.pay.ebs.Accounts_1.0/xquery/AccountUploadRs_uploadAccountResponse.xq">
+<persistable path="/cs.pay/cs.pay.ebs.Accounts_1.0/xquery/AccountUploadRs_uploadAccountResponse.xq"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" name="notifyPaymentResponse_PmtNotifyRS.xq" tooltip="chn.ext/chn.ext.abcs.SADAD_1.0/xquery/notifyPaymentResponse_PmtNotifyRS.xq">
+<persistable path="/chn.ext/chn.ext.abcs.SADAD_1.0/xquery/notifyPaymentResponse_PmtNotifyRS.xq"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" name="notifyPaymentResponse_notifyPaymentResponse.xq" tooltip="cs.pay/cs.pay.ebs.Payments_1.0/xquery/notifyPaymentResponse_notifyPaymentResponse.xq">
+<persistable path="/cs.pay/cs.pay.ebs.Payments_1.0/xquery/notifyPaymentResponse_notifyPaymentResponse.xq"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.bea.alsb.common.mapper.editors.MapperEditor" name="uploadAccount_AccountUploadRq.xq" tooltip="cs.pay/cs.pay.ebs.Accounts_1.0/xquery/uploadAccount_AccountUploadRq.xq">
+<persistable path="/cs.pay/cs.pay.ebs.Accounts_1.0/xquery/uploadAccount_AccountUploadRq.xq"/>
+</file>
+</mruList>
+</workbench>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAConfigPlan xmlns:jca="http://platform.integration.oracle/blocks/adapter/fw/metadata" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy" xmlns:edl="http://schemas.oracle.com/events/edl" xmlns="http://schemas.oracle.com/soa/configplan">
+   <composite name="cs.pay.Bills">
+      <!--Add search and replace rules for the import section of a composite
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888</search>
+		<replace>8889</replace>
+	<searchReplace>-->
+      <import>
+         <searchReplace>
+            <search/>
+            <replace/>
+         </searchReplace>
+      </import>
+      <service name="cs.pay.cvs.uploadBill">
+         <binding type="jca"/>
+      </service>
+      <service name="uploadBills">
+         <!--Add search and replace rules for the binding properties-->
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://xmlns.oracle.com/pcbpel/adapter/apps/cs.pay.application/cs.pay.Bills/cs_pay_cvs_uploadBill#wsdl.endpoint(uploadBills/DEQUEUE_pt)</replace>
+            </attribute>
+            <property name="weblogic.wsee.wsat.transaction.flowOption">
+               <replace>NEVER</replace>
+            </property>
+         </binding>
+      </service>
+      <property name="productVersion">
+         <replace>11.1.1.7.0</replace>
+      </property>
+      <!--Add search and replace rules for the component properties
+	For components and service/reference bindings, you can add policy references.
+	Example:
+	<component name="*">
+		<wsp:PolicyReference orawsp:category="management" orawsp:status="enabled" URI="oracle/log_policy"/>
+	</component>-->
+      <component name="cs_pay_bpel_uploadBill">
+         <property name="bpel.config.oneWayDeliveryPolicy">
+            <replace>async.persist</replace>
+         </property>
+      </component>
+      <!--Add search and replace rules for the reference properties
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888
+		<replace>8889</replace>
+	<searchReplace>
+	or provide a new replace value like:
+	<replace>http://my-new-server:8889/myservice</replace>-->
+      <reference name="getBillInfo">
+         <property name="jca.retry.count">
+            <replace>4</replace>
+         </property>
+         <property name="jca.retry.interval">
+            <replace>1</replace>
+         </property>
+         <property name="jca.retry.backoff">
+            <replace>2</replace>
+         </property>
+         <property name="jca.retry.maxInterval">
+            <replace>120</replace>
+         </property>
+         <binding type="jca"/>
+      </reference>
+   <!--   <reference name="cs.pay.ebs.Bills_1.0"> -->
+         <!--Add search and replace rules for the binding properties-->
+      <!--   <binding type="ws">
+            <attribute name="port">
+               <replace>http://www.AlMajdouie.sa/ebs/cs.pay.Bills#wsdl.endpoint(cs.pay.ebs.Bills/cs.pay.ebs.BillsPort)</replace>
+            </attribute>
+            <attribute name="location">
+               <replace>oramds:/apps/core/ebs/cs.pay.ebs.Bills_1.0.wsdl</replace>
+            </attribute>
+            <property name="weblogic.wsee.wsat.transaction.flowOption">
+               <replace>WSDLDriven</replace>
+            </property>
+         </binding>
+      </reference> -->
+       <reference name="cs.pay.ebs.Bills_1.0">
+         <!--Add search and replace rules for the binding properties-->
+         <binding type="ws">
+            <attribute name="port">
+               <replace>http://www.AlMajdouie.sa/ebs/cs.pay.Bills#wsdl.endpoint(cs.pay.ebs.Bills.BindingQSService/cs.pay.ebs.Bills.BindingQSPort)</replace>
+            </attribute>
+            <attribute name="location">
+               <replace>http://damevlsoaa2d.almajdouie.com:8011/ebs/cs.pay.ebs.Bills_1.0?wsdl</replace>
+            </attribute>
+            <property name="weblogic.wsee.wsat.transaction.flowOption">
+               <replace>WSDLDriven</replace>
+            </property>
+         </binding>
+      </reference>
+      <reference name="getBillResponse">
+         <property name="jca.retry.count">
+            <replace>4</replace>
+         </property>
+         <property name="jca.retry.interval">
+            <replace>1</replace>
+         </property>
+         <property name="jca.retry.backoff">
+            <replace>2</replace>
+         </property>
+         <property name="jca.retry.maxInterval">
+            <replace>120</replace>
+         </property>
+         <binding type="jca"/>
+      </reference>
+   </composite>
+   <!--To configure monitor.config: 
+	<property name="enabled"><replace>true</replace></property>
+	<property name="dataObjectsFolder"><searchReplace><search>mydev</search><replace>myproduction</replace></searchReplace></property>
+	
+	sample properties to configure for adapter: 
+	<jca:property name="QueueName"><replace>medmq1</replace></jca:property>
+	
+	To add search and replace rules for wsdls, xsd and jca files
+	Example:
+	<searchReplace>
+		<search>http://my-dev-server</search>
+		<replace>http://my-test-server</replace>
+	<searchReplace>
+	<searchReplace>
+		<search>8888</search>
+		<replace>8889</replace>
+	<searchReplace>
+	-->
+   <wsdlAndSchema name="cs.pay.cvs.uploadBill_apps.jca|cs.pay.ebs.Bills_1.0Wrapper.wsdl|cs_pay_cvs_uploadBill.wsdl|getBillInfo.wsdl|getBillInfo_db.jca|getBillResponse.wsdl|getBillResponse_db.jca|xsd/APPS_WF_EVENT_T_cs.pay.cvs.uploadBill.xsd|xsd/getBillInfo.xsd|xsd/getBillInfonProc.xsd|xsd/getBillResponseProc_sp.xsd|xsd/getBillResponse_sp.xsd">
+      <searchReplace>
+         <search/>
+         <replace/>
+      </searchReplace>
+   </wsdlAndSchema>
+</SOAConfigPlan>

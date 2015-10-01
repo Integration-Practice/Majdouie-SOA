@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+            xmlns:basic="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+            targetNamespace="http://www.AlMajdouie.sa/ebo/util.cmn.EBMHeader"
+            elementFormDefault="qualified">
+  <xsd:import namespace="http://www.AlMajdouie.sa/ebo/util.cmn.Basic"
+              schemaLocation="../ebo/util.cmn.Basic_1.0.xsd"/>
+  <xsd:complexType name="HeaderType">
+    <xsd:sequence>
+      <xsd:element name="senderID" type="xsd:string" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>A sample element</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="receiverID" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="rquid" type="basic:UidType" minOccurs="0"/>
+      <xsd:element name="contentType" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="header" type="HeaderType">
+    <xsd:annotation>
+      <xsd:documentation>A sample element</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ebmCID" type="EbmIDType"/>
+  <xsd:element name="ebmMID" type="EbmIDType"/>
+  <xsd:element name="ebmRTID" type="EbmIDType"/>
+  <xsd:element name="ebmPID" type="EbmIDType"/>
+  <xsd:element name="ebmSID" type="EbmSIDType"/>
+  <xsd:simpleType name="EbmIDType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="EbmSIDType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

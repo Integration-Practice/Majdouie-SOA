@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;cs.pay/cs.pay.ebs.Bills_1.0/xquery/uploadBillRequest_BillUploadRq.xq&apos; to &apos;uploadBill_BillUploadRq.xq&apos;" description="Rename resource &apos;uploadBillRequest_BillUploadRq.xq&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="cs.pay.ebs.Bills_1.0/xquery/uploadBillRequest_BillUploadRq.xq" name="uploadBill_BillUploadRq.xq" stamp="1431447423582" updateReferences="true"/>
+</session>

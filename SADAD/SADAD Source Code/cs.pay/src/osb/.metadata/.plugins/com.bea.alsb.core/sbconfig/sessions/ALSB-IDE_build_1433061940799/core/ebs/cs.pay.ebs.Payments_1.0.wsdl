@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:wsdlEntry xmlns:con="http://www.bea.com/wli/sb/resources/config">
+    <con:wsdl><![CDATA[<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="http://www.AlMajdouie.sa/ebs/cs.pay.Payments"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://www.AlMajdouie.sa/ebs/cs.pay.Payments"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:waseu="http://www.AlMajdouie.sa/ebo/util.flt.Fault">
+  <types>
+    <xsd:schema targetNamespace="http://www.AlMajdouie.sa/ebs/cs.pay.Payments/types"
+                elementFormDefault="qualified"/>
+    <xsd:schema>
+      <xsd:import schemaLocation="cs.pay.ebs.Payments_1.0.xsd"
+                  namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Payments"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="../ebo/util.flt.Fault_1.0.xsd"
+                  namespace="http://www.AlMajdouie.sa/ebo/util.flt.Fault"/>
+    </xsd:schema>
+  </types>
+  <message name="notifyPayment">
+    <part name="part" element="tns:notifyPayment"/>
+  </message>
+  <message name="notifyPaymentResponse">
+    <part name="part" element="tns:notifyPaymentResponse"/>
+  </message>
+  <message name="loadPayment">
+    <part name="part" element="tns:loadPayment"/>
+  </message>
+  <message name="loadPaymentResponse">
+    <part name="part" element="tns:loadPaymentResponse"/>
+  </message>
+  <message name="uploadPayment">
+    <part name="part" element="tns:uploadPayment"/>
+  </message>
+  <message name="uploadPaymentResponse">
+    <part name="part" element="tns:confirmPayment"/>
+  </message>
+  <message name="confirmPayment">
+    <part name="part" element="tns:confirmPayment"/>
+  </message>
+  <message name="confirmPaymentResponse">
+    <part name="part" element="tns:confirmPaymentResponse"/>
+  </message>
+  <portType name="cs.pay.ebs.Payments">
+    <operation name="notifyPayment">
+      <input message="tns:notifyPayment"/>
+      <output message="tns:notifyPaymentResponse"/>
+      <fault message="tns:fault" name="flt"/>
+    </operation>
+    <operation name="loadPayment">
+      <input message="tns:loadPayment"/>
+      <output message="tns:loadPaymentResponse"/>
+      <fault message="tns:fault" name="flt"/>
+    </operation>
+    <operation name="uploadPayment">
+      <input message="tns:uploadPayment"/>
+      <output message="tns:uploadPaymentResponse"/>
+      <fault message="tns:fault" name="flt"/>
+    </operation>
+    <operation name="confirmPayment">
+      <input message="tns:confirmPayment"/>
+      <output message="tns:confirmPaymentResponse"/>
+      <fault message="tns:fault" name="flt"/>
+    </operation>
+  </portType>
+  <binding name="cs.pay.ebs.Payments.Binding" type="tns:cs.pay.ebs.Payments">
+    <soap:binding style="document"
+                  transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="notifyPayment">
+      <soap:operation style="document"
+                      soapAction="http://www.AlMajdouie.sa/ebs/cs.pay.Payments/notifyPayment"/>
+      <input>
+        <soap:body use="literal" parts="part"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="part"/>
+      </output>
+      <fault name="flt">
+        <soap:fault name="flt" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="loadPayment">
+      <soap:operation style="document"
+                      soapAction="http://www.AlMajdouie.sa/ebs/cs.pay.Payments/loadPayment"/>
+      <input>
+        <soap:body use="literal" parts="part"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="part"/>
+      </output>
+      <fault name="flt">
+        <soap:fault name="flt" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="uploadPayment">
+      <soap:operation style="document"
+                      soapAction="http://www.AlMajdouie.sa/ebs/cs.pay.Payments/uploadPayment"/>
+      <input>
+        <soap:body use="literal" parts="part"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="part"/>
+      </output>
+      <fault name="flt">
+        <soap:fault name="flt" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="confirmPayment">
+      <soap:operation style="document"
+                      soapAction="http://www.AlMajdouie.sa/ebs/cs.pay.Payments/confirmPayment"/>
+      <input>
+        <soap:body use="literal" parts="part"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="part"/>
+      </output>
+      <fault name="flt">
+        <soap:fault name="flt" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="cs.pay.ebs.Payments">
+    <port name="cs.pay.ebs.PaymentsPort"
+          binding="tns:cs.pay.ebs.Payments.Binding">
+      <soap:address location="http://www.example.com"/>
+    </port>
+  </service>
+  <message name="fault">
+    <part name="part" element="waseu:fault"/>
+  </message>
+</definitions>]]></con:wsdl>
+    <con:dependencies>
+        <con:schemaRef isInclude="false" schemaLocation="../ebo/util.flt.Fault_1.0.xsd" namespace="http://www.AlMajdouie.sa/ebo/util.flt.Fault" ref="core/ebo/util.flt.Fault_1.0"/>
+        <con:schemaRef isInclude="false" schemaLocation="cs.pay.ebs.Payments_1.0.xsd" namespace="http://www.AlMajdouie.sa/ebs/cs.pay.Payments" ref="core/ebs/cs.pay.ebs.Payments_1.0"/>
+    </con:dependencies>
+    <con:targetNamespace>http://www.AlMajdouie.sa/ebs/cs.pay.Payments</con:targetNamespace>
+</con:wsdlEntry>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-workspace name="Projects" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:project name="chn.ext.abcs.SADAD_1.0">D:/Karuna/From Marwan/SADAD code/cs.pay/test/chn-ext-abcs-SADAD-1-0-soapui-project.xml</con:project>
+  <con:project name="cs.pay.ebs.Accounts_1.0">D:/Karuna/From Marwan/SADAD code/cs.pay/test/cs-pay-ebs-Accounts-1-0-soapui-project.xml</con:project>
+  <con:project name="cs.pay.ebs.Bills_1.0">D:/Karuna/From Marwan/SADAD code/cs.pay/test/cs-pay-ebs-Bills-1-0-soapui-project.xml</con:project>
+  <con:collectInfoForSupport>false</con:collectInfoForSupport>
+  <con:project name="cs.pay.OLFM.uploadAccount">D:/Karuna/From Marwan/SADAD code/cs.pay/test/cs-pay-OLFM-uploadBill-soapui-project.xml</con:project>
+  <con:project name="cs.pay.OLFM.uploadBills">D:/Karuna/From Marwan/SADAD code/cs.pay/test/cs-pay-OLFM-uploadBills-soapui-project.xml</con:project>
+  <con:project name="SADADWSDL">D:/Karuna/From Marwan/SADAD code/cs.pay/test/SADADWSDL-soapui-project.xml</con:project>
+</con:soapui-workspace>
